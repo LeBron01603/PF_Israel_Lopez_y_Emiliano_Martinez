@@ -56,9 +56,13 @@
                     stmt.setString(1, cedulaCliente); // Pasar la cédula como parámetro
                     rs = stmt.executeQuery();
 
-                    // Mostrar los detalles del cliente siempre
-                    boolean clienteEncontrado = false; // bandera para verificar si el cliente existe
+                    // Variables para manejar la existencia de cliente y pedidos
+                    boolean clienteEncontrado = false;
+                    boolean pedidosExistentes = false;
+
+                    // Iterar sobre los resultados
                     while (rs.next()) {
+                        // Mostrar los detalles del cliente solo una vez
                         if (!clienteEncontrado) {
                             clienteEncontrado = true;
                             // Si encontramos al cliente, mostrar sus datos
@@ -81,13 +85,12 @@
                 </tr>
             </table>
         </div>
-<!-- th es para la etiqueta de la columna
-    td es el dato que va en el campo, el rs.getString atrae los datos, recibe el resultado -->
         <% 
-                        } // Fin de la condición para mostrar datos del cliente
+                        }
 
-                        // Mostrar los pedidos solo si existen
+                        // Comprobar si existen pedidos para el cliente
                         if (rs.getInt("id_pedido") != 0) {
+                            if (!pedidosExistentes) {
         %>
             <h3>Pedidos del Cliente</h3>
             <table class="pedido-table">
@@ -100,33 +103,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><%= rs.getInt("id_pedido") %></td>
-                        <td><%= rs.getString("Monto") %></td>
-                        <td><%= rs.getString("Descripcion") %></td>
-                        <td><%= rs.getDate("Fecha") %></td>
-                    </tr>
-                </tbody>
-            </table>
         <% 
-                        } 
+                            pedidosExistentes = true;  // Marcar que hay pedidos para mostrar
+                        }
+        %>
+            <!-- Agregar cada pedido como una nueva fila -->
+            <tr>
+                <td><%= rs.getInt("id_pedido") %></td>
+                <td><%= rs.getString("Monto") %></td>
+                <td><%= rs.getString("Descripcion") %></td>
+                <td><%= rs.getDate("Fecha") %></td>
+            </tr>
+        <% 
                     }
-                    if (!clienteEncontrado) {
-                        out.println("<p>No se encontró un cliente con la cédula: " + cedulaCliente + "</p>");
+
+                    // Si no se encontraron pedidos, mostrar un mensaje
+                    if (!pedidosExistentes) {
+                        out.println("<p>No se encontraron pedidos para el cliente con cédula: " + cedulaCliente + "</p>");
                     }
-                } catch (ClassNotFoundException | SQLException e) {
-                    out.println("<p>Error: " + e.getMessage() + "</p>");
-                } finally {
-                    try {
-                        if (rs != null) rs.close();
-                        if (stmt != null) stmt.close();
-                        if (conn != null) conn.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                }
+                if (!clienteEncontrado) {
+                    out.println("<p>No se encontró un cliente con la cédula: " + cedulaCliente + "</p>");
+                }
+            } catch (ClassNotFoundException | SQLException e) {
+                out.println("<p>Error: " + e.getMessage() + "</p>");
+            } finally {
+                try {
+                    if (rs != null) rs.close();
+                    if (stmt != null) stmt.close();
+                    if (conn != null) conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         %>
+
+        </tbody>
+    </table>
+<% } %>
 
         <div class="actions-wrapper">
             <button type="button" onclick="window.location.href = 'menu.jsp';" class="btn-exit btn-salir">Salir</button>

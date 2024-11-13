@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Redireccionar a la página de insertar cliente
     document.getElementById('btn-insertarCliente').addEventListener('click', function() {
-        window.location.href = 'insertarP-C.jsp';  // Página para insertar cliente o pedido
+        window.location.href = 'insertarCliente.jsp';  // Página para insertar cliente o pedido
     });
 
     // Redireccionar a la página de insertar pedido
@@ -26,6 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Redireccionar a la página de inicio de sesión
     document.getElementById('btn-salir').addEventListener('click', function() {
-        window.location.href = 'index.jsp';
-    });
+        window.location.assign('index.jsp');
+    });    
 });

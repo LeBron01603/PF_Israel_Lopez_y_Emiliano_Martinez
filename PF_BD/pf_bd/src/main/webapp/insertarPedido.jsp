@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Registrar Pedido</h2>
-        <form action="insertarPedido.jsp" method="post" onsubmit="return validarFormulario()">
+        <form action="insertardatosP.jsp" method="post" onsubmit="return validarFormulario()">
             
             <!-- Sección de Datos del Pedido -->
             <div class="section">

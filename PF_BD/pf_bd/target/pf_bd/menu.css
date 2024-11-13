@@ -29,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; /* Para posicionar el botón "Salir" */
+    position: relative; /* Para posicionar el botón "Salir" correctamente */
 }
 
 /* Estilo del título del menú */
@@ -121,6 +121,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: auto;  /* Asegurarse de que no ocupe todo el ancho */
 }
 
 /* Efecto hover para el botón "Salir" */

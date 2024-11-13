@@ -37,7 +37,7 @@
                 <button type="button" id="btn-Consulta">Consulta General</button>
             </div>
             <div class="salir">
-                <button onclick="window.location.href='index.jsp';">
+                <button type="button" id="btn-salir"> 
                     <i class="bx bx-door-open"></i> Salir
                 </button>
             </div>
