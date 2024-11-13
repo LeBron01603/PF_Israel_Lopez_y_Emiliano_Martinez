@@ -1,11 +1,13 @@
-<%@ page import="java.sql.*, java.io.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.*, javax.servlet.*, javax.servlet.http.*" %>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Cliente y Pedido</title>
     <link rel="stylesheet" href="insertarP-C.css">
+
     <script>
         // Función para consultar si el cliente existe
         function consultarCliente() {
@@ -15,19 +17,17 @@
                 return;
             }
 
-            // Realizamos la consulta al backend (mismo archivo insertarP-C.jsp)
+            // Realizamos la consulta al backend
             fetch('insertarP-C.jsp?accion=consultarCliente&cedula=' + cedula)
                 .then(response => response.json())  // Esperamos una respuesta en formato JSON
                 .then(data => {
                     if (data.existe) {
-                        // El cliente existe, mostrar el formulario de pedido
                         alert("El cliente ya existe.");
                         document.getElementById("clienteExistente").style.display = "block";
                         document.getElementById("btnRegistrarPedido").disabled = false;
                         document.getElementById("datosCliente").style.display = "none"; // Ocultar formulario de cliente
                         document.getElementById("cedulaPedido").value = cedula;
                     } else {
-                        // El cliente no existe, mostrar el formulario de registro de cliente
                         alert("El cliente no existe. Ingrese los datos.");
                         document.getElementById("datosCliente").style.display = "block"; // Mostrar formulario de cliente
                         document.getElementById("clienteExistente").style.display = "none"; // Ocultar formulario de pedido
@@ -129,7 +129,6 @@
         CallableStatement stmtConsultarCliente = null;
         ResultSet rsCliente = null;
 
-        // Acción de consultar cliente
         if ("consultarCliente".equals(accion)) {
             boolean existe = false;
             try {
@@ -143,9 +142,9 @@
                 stmtConsultarCliente.setString(1, identificacion);
                 rsCliente = stmtConsultarCliente.executeQuery();
 
-                // Verificar si el cliente existe
+                // Comprobar si la respuesta contiene el campo 'existe'
                 if (rsCliente.next()) {
-                    existe = true;  // Si hay resultados, el cliente existe
+                    existe = rsCliente.getInt("existe") == 1;  // Verificar si la columna 'existe' es 1
                 }
 
                 // Enviar respuesta en formato JSON
