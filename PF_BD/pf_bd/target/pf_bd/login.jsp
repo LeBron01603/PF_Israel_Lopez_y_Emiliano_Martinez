@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%
     // Variables de conexión
-    String url = "jdbc:mysql://localhost:3306/proyecto_bd";
+    String url = "jdbc:mysql://localhost:3306/proyecto_bd?useUnicode=true&characterEncoding=utf8";
     String user = "root"; 
     String password = "Isra1107."; // Cambia por tu contraseña de MySQL
 
