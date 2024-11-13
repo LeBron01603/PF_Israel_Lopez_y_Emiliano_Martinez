@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.Date" %>
-<%@ page import="java.sql.*" %>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -19,21 +16,33 @@
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "consultarCliente.jsp", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Agregar un console.log para depuración
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var respuesta = xhr.responseText.trim();
+                    console.log("Respuesta del servidor: ", respuesta);  // Depuración
+
                     if (respuesta === "existe") {
                         alert("Cliente encontrado.");
+                        // Habilitar los campos para ingresar el pedido
                         document.getElementById('montoPedido').disabled = false;
                         document.getElementById('descripcionPedido').disabled = false;
                         document.getElementById('fechaPedido').disabled = false;
                         document.getElementById('registrarPedido').disabled = false;
-                    } else {
+                    } else if (respuesta === "noExiste") {
                         alert("Cliente no encontrado. Registrando cliente...");
-                        document.forms[0].submit();
+                        document.forms[0].submit(); // Enviar el formulario para registrar el cliente
+                    } else {
+                        alert("Hubo un error al consultar el cliente.");
                     }
+                } else if (xhr.readyState == 4 && xhr.status != 200) {
+                    // Agregar manejo de errores
+                    console.error("Error en la comunicación con el servidor.");
+                    alert("Hubo un error al consultar el cliente.");
                 }
             };
+
             xhr.send("cedula=" + cedula);
         }
     </script>
@@ -89,33 +98,5 @@
             </div>
         </form>
     </div>
-
-    <% 
-        if (request.getMethod().equalsIgnoreCase("POST") && request.getParameter("submitPedido") != null) {
-            String cedula = request.getParameter("cedula");
-            double monto = Double.parseDouble(request.getParameter("montoPedido"));
-            String descripcion = request.getParameter("descripcionPedido");
-            java.sql.Date fechaPedido = java.sql.Date.valueOf(request.getParameter("fechaPedido"));
-
-            String url = "jdbc:mysql://localhost:3306/bd_pf";
-            String user = "root";
-            String password = "Isra1107.";
-            try (Connection conn = DriverManager.getConnection(url, user, password)) {
-                // Llamada al procedimiento almacenado para insertar pedido
-                String sqlPedido = "{call insertarPedido(?, ?, ?, ?)}";
-                try (PreparedStatement stmt = conn.prepareStatement(sqlPedido)) {
-                    stmt.setString(1, cedula);
-                    stmt.setDouble(2, monto);
-                    stmt.setString(3, descripcion);
-                    stmt.setDate(4, fechaPedido);
-                    stmt.executeUpdate();
-                    out.println("<script>alert('Pedido registrado exitosamente');</script>");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                out.println("<script>alert('Error al registrar el pedido: " + e.getMessage() + "');</script>");
-            }
-        }
-    %>
 </body>
 </html>
