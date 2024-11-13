@@ -3,7 +3,7 @@
     // Variables de conexión
     String url = "jdbc:mysql://localhost:3306/bd_pf";
     String user = "root"; 
-    String password = "Emiliano01603"; // Cambia por tu contraseña de MySQL
+    String password = "Isra1107."; // Cambia por tu contraseña de MySQL
 
     // Parámetros de usuario (asegúrate de que los nombres coincidan con los campos del formulario en index.jsp)
     String idUsuario = request.getParameter("id_Usuario");
