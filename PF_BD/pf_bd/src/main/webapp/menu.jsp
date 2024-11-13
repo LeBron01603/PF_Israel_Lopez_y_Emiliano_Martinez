@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,28 +10,26 @@
 </head>
 <body>
     <div class="Menu">
-        <h2>Menú Principal
-        <i class='bx bx-home'></i>
-        </h2>
+        <h2>Menú Principal <i class='bx bx-home'></i></h2>
         <form method="post" action="">
             <div class="insertar">
                 <i class='bx bxs-user-plus'></i>
-                <button type="button" id="btn-insertar">Insertar</button>
+                <button type="button" onclick="window.location.href='insertarCliente.jsp'">Insertar Cliente</button>
             </div>
             <div class="mantenimiento">
                 <i class='bx bx-wrench'></i>
-                <button type="button" id="btn-mantenimiento">Consulta Cliente</button>
+                <button type="button" onclick="window.location.href='consultarCliente.jsp'">Consultar Cliente</button>
             </div>
             <div class="mantenimiento">
                 <i class='bx bx-wrench'></i>
-                <button type="button" id="btn-mantenimientoP">Consulta Pedido</button>
+                <button type="button" onclick="window.location.href='consultarPedido.jsp'">Consultar Pedido</button>
             </div>
             <div class="Consulta">
                 <i class='bx bxs-group'></i>
-                <button type="button" id="btn-Consulta">Consulta General</button>
+                <button type="button" onclick="window.location.href='consultaGeneral.jsp'">Consulta General</button>
             </div>
             <div class="salir">
-                <button type="button" id="btn-salir">Salir</button>
+                <button type="button" id="btn-salir" onclick="window.location.href='index.jsp'">Salir</button>
             </div>
         </form>
     </div>
