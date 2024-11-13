@@ -7,6 +7,7 @@
     <title>Registrar Cliente y Pedido</title>
     <link rel="stylesheet" href="insertarP-C.css">
     <script>
+        // Función para consultar si el cliente existe
         function consultarCliente() {
             var cedula = document.getElementById("tfIdentificacion").value.trim();
             if (cedula === '') {
@@ -24,15 +25,17 @@
                         return;
                     }
 
+                    // Verificamos si el cliente existe o no
                     if (data.existe) {
                         alert("El cliente ya existe.");
                         document.getElementById("clienteExistente").style.display = "block";
                         document.getElementById("btnRegistrarPedido").disabled = false;
-                        // Autocompletar cédula de pedido con la cédula existente
+                        document.getElementById("datosCliente").style.display = "none"; // Ocultar formulario de cliente
                         document.getElementById("cedulaPedido").value = cedula;
                     } else {
                         alert("El cliente no existe. Ingrese los datos.");
-                        document.getElementById("datosCliente").style.display = "block";
+                        document.getElementById("datosCliente").style.display = "block"; // Mostrar formulario de cliente
+                        document.getElementById("clienteExistente").style.display = "none"; // Ocultar formulario de pedido
                     }
                 })
                 .catch(error => {
@@ -84,7 +87,7 @@
                 <button type="submit" name="accion" value="registrarCliente">Registrar Cliente</button>
             </div>
 
-            <!-- Sección de Datos del Pedido -->
+            <!-- Sección de Datos del Pedido (Solo visible si el cliente ya existe) -->
             <div class="section" id="clienteExistente" style="display:none;">
                 <h3>Registrar Pedido</h3>
                 <div class="grid-container">
