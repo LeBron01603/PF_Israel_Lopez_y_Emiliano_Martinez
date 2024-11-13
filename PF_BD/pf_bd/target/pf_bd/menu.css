@@ -1,101 +1,99 @@
-* {
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    background-color: #f4f4f4;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('menu2.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
+/* Estilos del contenedor principal del menú */
 .Menu {
-    width: 350px;
-    height: 430px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
-    border-radius: 15px;
-    padding: 30px 20px;
-    position: relative; /* Añadido para posicionar .salir de forma absoluta */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centrado vertical de los elementos */
-    align-items: center; /* Centrado horizontal de los elementos */
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Título principal del menú */
 .Menu h2 {
-    font-size: 33px;
+    font-size: 2rem;
     text-align: center;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Línea divisoria debajo del título */
-    padding-bottom: 10px; /* Espacio bajo el título */
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column; /* Para poner el ícono debajo del texto */
-    align-items: center; /* Alineación del ícono y texto en el centro horizontal */
-}
-
-.Menu h2 i {
-    margin-top: 10px; /* Espacio entre el texto y el ícono */
-}
-
-.Menu form {
-    text-align: center; /* Para centrar los botones horizontalmente */
-    flex: 1; /* Para que los botones ocupen el espacio disponible verticalmente */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centrado vertical de los botones */
-}
-
-.Menu button {
-    margin-bottom: 10px; /* Espacio entre los botones */
-    font-size: 12px;
-    background: #fff;
+    margin-bottom: 30px;
     color: #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    height: 28px; /* Tamaño del botón */
-    border-radius: 40px;
+}
+
+/* Iconos del título */
+.Menu h2 i {
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-left: 10px;
+}
+
+/* Estilos para cada sección del menú */
+.insertar, .mantenimiento, .Consulta, .salir {
+    margin-bottom: 20px;
+}
+
+/* Estilo de los botones */
+button, .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    text-align: center;
     border: none;
-    outline: none;
     cursor: pointer;
-    font-weight: 550;
-    padding: 0 15px;
-    width: 80%; /* Ancho del botón ajustado */
-    display: flex;
-    align-items: center; /* Centrado vertical del texto */
-    justify-content: center; /* Centrado horizontal del texto */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.Menu button i {
-    margin-right: 5px; /* Espacio entre el ícono y el texto del botón */
-}
-
-.insertar button,
-.mantenimiento button,
-.Consulta button {
-    width: 100%; /* Ancho del botón */
-    flex-basis: 45%;
-    margin-bottom: 18px; /* Espacio entre los botones */
-}
-
-.salir button {
-    position: absolute;
-    background-color: #ff4d4d;
+button:hover, .btn:hover {
+    background-color: #3498db;
     color: white;
-    bottom: 2px; /* Ajustado para que esté en la esquina inferior */
-    right: 10px; /* Ajustado para que esté en la esquina derecha */
-    font-size: 10px; /* Ajuste del tamaño de fuente */
-    width: auto; /* Ancho automático para ajustarse al contenido */
-    padding: 5px 5px; /* Espaciado interno del botón */
-    border-radius: 30px;
+    transform: scale(1.05);
+}
+
+/* Iconos dentro de los botones */
+button i, .btn i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* Estilo para los contenedores de los iconos */
+.insertar i, .mantenimiento i, .Consulta i, .salir i {
+    font-size: 2rem;
+    color: #3498db;
+    margin-right: 15px;
+}
+
+/* Estilo para los botones cuando se encuentran dentro de un contenedor */
+button[type="button"], .btn {
     display: flex;
-    align-items: center; /* Centrado vertical del contenido */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #ecf0f1;
+    color: #333;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .Menu {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .Menu h2 {
+        font-size: 1.5rem;
+    }
+
+    button, .btn {
+        font-size: 1rem;
+    }
+
+    button i, .btn i {
+        font-size: 1.2rem;
+    }
 }
