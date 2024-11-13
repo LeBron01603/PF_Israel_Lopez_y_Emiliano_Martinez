@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Cliente y Pedido</title>
     <link rel="stylesheet" href="insertarP-C.css">
-
+    
     <script>
         // Función para consultar si el cliente existe
         function consultarCliente() {
@@ -17,7 +17,7 @@
                 return;
             }
 
-            // Realizamos la consulta al backend
+            // Realizamos la consulta al backend (mismo archivo insertarP-C.jsp)
             fetch('insertarP-C.jsp?accion=consultarCliente&cedula=' + cedula)
                 .then(response => response.json())  // Esperamos una respuesta en formato JSON
                 .then(data => {
@@ -43,7 +43,8 @@
 <body>
     <div class="container">
         <h2>Registrar Cliente y Pedido</h2>
-        <form action="insertarP-C.jsp" method="post">
+        <form action="insertarP-C.jsp" method="post" onsubmit="return validarFormulario()">
+            
             <!-- Sección de Consulta de Cliente -->
             <div class="section">
                 <h3>Consultar Cliente</h3>
@@ -68,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <label for="E-mail">E-mail</label>
-                        <input type="email" id="E-mail" name="Email" required>
+                        <input type="email" id="E-mail" name="Email">
                     </div>
                 </div>
                 <button type="submit" name="accion" value="registrarCliente">Registrar Cliente</button>
