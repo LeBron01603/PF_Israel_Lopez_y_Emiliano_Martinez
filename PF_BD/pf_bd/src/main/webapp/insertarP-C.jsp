@@ -19,13 +19,14 @@
             fetch('insertarP-C.jsp?accion=consultarCliente&cedula=' + cedula)
                 .then(response => response.json())  // Esperamos una respuesta en formato JSON
                 .then(data => {
+                    // Verificamos si hay un error en el servidor
                     if (data.error) {
                         console.error('Error del servidor:', data.error);
                         alert('Hubo un error en el servidor: ' + data.error);
                         return;
                     }
 
-                    // Verificamos si el cliente existe o no
+                    // Si el cliente existe, mostrar el formulario de pedido
                     if (data.existe) {
                         alert("El cliente ya existe.");
                         document.getElementById("clienteExistente").style.display = "block";
@@ -33,6 +34,7 @@
                         document.getElementById("datosCliente").style.display = "none"; // Ocultar formulario de cliente
                         document.getElementById("cedulaPedido").value = cedula;
                     } else {
+                        // Si el cliente no existe, mostrar el formulario de registro de cliente
                         alert("El cliente no existe. Ingrese los datos.");
                         document.getElementById("datosCliente").style.display = "block"; // Mostrar formulario de cliente
                         document.getElementById("clienteExistente").style.display = "none"; // Ocultar formulario de pedido
@@ -157,9 +159,9 @@
                 stmtConsultarCliente.setString(1, identificacion);
                 rsCliente = stmtConsultarCliente.executeQuery();
 
-                // Comprobar si la respuesta contiene el campo 'existe'
+                // Verificar si el cliente existe
                 if (rsCliente.next()) {
-                    existe = rsCliente.getInt("existe") == 1;  // Verificar si la columna 'existe' es 1
+                    existe = true;  // Si hay resultados, el cliente existe
                 }
 
                 // Enviar respuesta en formato JSON
