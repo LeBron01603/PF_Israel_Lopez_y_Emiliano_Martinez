@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
-<html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -12,12 +11,18 @@
 <body>
     <div class="Menu">
         <h2>Menú Principal
-        <i class='bx bx-home'></i>
+            <i class='bx bx-home'></i>
         </h2>
         <form method="post" action="">
-            <div class="insertar">
-                <i class='bx bxs-user-plus'></i>
-                <button type="button" id="btn-insertar">Insertar</button>
+            <div class="button-container">
+                <div class="insertar">
+                    <i class='bx bxs-user-plus'></i>
+                    <button type="button" id="btn-insertarCliente">Insertar Cliente</button>
+                </div>
+                <div class="insertar">
+                    <i class='bx bxs-cart-add'></i>
+                    <button type="button" id="btn-insertarPedido">Insertar Pedido</button>
+                </div>
             </div>
             <div class="mantenimiento">
                 <i class='bx bx-wrench'></i>
@@ -32,7 +37,9 @@
                 <button type="button" id="btn-Consulta">Consulta General</button>
             </div>
             <div class="salir">
-                <button type="button" id="btn-salir">Salir</button>
+                <button onclick="window.location.href='index.jsp';">
+                    <i class="bx bx-door-open"></i> Salir
+                </button>
             </div>
         </form>
     </div>

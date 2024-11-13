@@ -1,3 +1,4 @@
+/* Establecer márgenes y rellenos para todo */
 * {
     margin: 0;
     padding: 0;
@@ -5,97 +6,160 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* Cuerpo con fondo de imagen */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('menu2.jpg') no-repeat;
+    background: url('menu2.jpg') no-repeat center center;
     background-size: cover;
-    background-position: center;
 }
 
+/* Contenedor del menú */
 .Menu {
-    width: 350px;
-    height: 430px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
+    width: 400px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro con transparencia */
     border-radius: 15px;
     padding: 30px 20px;
-    position: relative; /* Añadido para posicionar .salir de forma absoluta */
+    color: #fff;
+    backdrop-filter: blur(10px); /* Fondo desenfocado */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrado vertical de los elementos */
-    align-items: center; /* Centrado horizontal de los elementos */
+    align-items: center;
+    position: relative; /* Para posicionar el botón "Salir" */
 }
 
+/* Estilo del título del menú */
 .Menu h2 {
-    font-size: 33px;
+    font-size: 30px;
     text-align: center;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Línea divisoria debajo del título */
-    padding-bottom: 10px; /* Espacio bajo el título */
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: column; /* Para poner el ícono debajo del texto */
-    align-items: center; /* Alineación del ícono y texto en el centro horizontal */
-}
-
-.Menu h2 i {
-    margin-top: 10px; /* Espacio entre el texto y el ícono */
-}
-
-.Menu form {
-    text-align: center; /* Para centrar los botones horizontalmente */
-    flex: 1; /* Para que los botones ocupen el espacio disponible verticalmente */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Línea de separación */
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrado vertical de los botones */
+    align-items: center;
 }
 
-.Menu button {
-    margin-bottom: 10px; /* Espacio entre los botones */
-    font-size: 12px;
-    background: #fff;
-    color: #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    height: 28px; /* Tamaño del botón */
-    border-radius: 40px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-weight: 550;
-    padding: 0 15px;
-    width: 80%; /* Ancho del botón ajustado */
+/* Espacio entre el título y el ícono */
+.Menu h2 i {
+    margin-top: 10px;
+}
+
+/* Contenedor del formulario */
+.Menu form {
     display: flex;
-    align-items: center; /* Centrado vertical del texto */
-    justify-content: center; /* Centrado horizontal del texto */
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
+/* Estilo común para los botones */
+.Menu button {
+    margin-bottom: 12px;
+    font-size: 14px;
+    background-color: #4CAF50; /* Botones de color verde */
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto hover para los botones */
+.Menu button:hover {
+    background-color: #45a049;
+}
+
+/* Espacio entre los íconos y el texto de los botones */
 .Menu button i {
-    margin-right: 5px; /* Espacio entre el ícono y el texto del botón */
+    margin-right: 8px;
 }
 
-.insertar button,
+/* Contenedor para los botones Insertar Cliente y Insertar Pedido */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Los botones estarán uno al lado del otro */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los botones dentro del contenedor de insertar */
+.insertar button {
+    flex-basis: 48%; /* 48% de ancho para los botones */
+    margin-bottom: 0; /* Eliminar el margen inferior */
+}
+
+/* Estilo para los botones de mantenimiento y consultas */
 .mantenimiento button,
 .Consulta button {
-    width: 100%; /* Ancho del botón */
-    flex-basis: 45%;
-    margin-bottom: 18px; /* Espacio entre los botones */
+    width: 100%;
 }
 
+/* Estilo para el botón "Salir" */
 .salir button {
     position: absolute;
-    background-color: #ff4d4d;
-    color: white;
-    bottom: 2px; /* Ajustado para que esté en la esquina inferior */
-    right: 10px; /* Ajustado para que esté en la esquina derecha */
-    font-size: 10px; /* Ajuste del tamaño de fuente */
-    width: auto; /* Ancho automático para ajustarse al contenido */
-    padding: 5px 5px; /* Espaciado interno del botón */
-    border-radius: 30px;
+    bottom: 10px; /* Alineado a la parte inferior */
+    right: 10px; /* Alineado a la derecha */
+    background-color: #f44336;
+    color: #fff;
+    padding: 6px 12px;  /* Reducido el padding para hacerlo más pequeño */
+    border-radius: 20px; /* Borde redondeado más pequeño */
+    font-size: 12px; /* Tamaño de fuente pequeño */
     display: flex;
-    align-items: center; /* Centrado vertical del contenido */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto hover para el botón "Salir" */
+.salir button:hover {
+    background-color: #e53935;
+}
+
+/* Icono dentro del botón */
+.salir button i {
+    margin-right: 5px; /* Menos espacio entre el icono y el texto */
+}
+
+/* Iconos en los botones */
+.bx {
+    font-size: 16px; /* Reducción del tamaño del icono */
+}
+
+
+/* Diseño para la versión de tablet o móviles */
+@media (max-width: 600px) {
+    .Menu {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .Menu h2 {
+        font-size: 24px;
+    }
+
+    .button-container {
+        flex-direction: column; /* Los botones se apilan verticalmente */
+        gap: 10px; /* Espaciado entre los botones */
+    }
+
+    .insertar button {
+        flex-basis: 100%; /* Los botones ocuparán todo el ancho */
+    }
+
+    .Menu button {
+        font-size: 12px; /* Reducir tamaño de texto en botones para pantallas pequeñas */
+    }
 }

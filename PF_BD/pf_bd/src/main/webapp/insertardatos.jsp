@@ -9,11 +9,6 @@
     String segundoApellido = request.getParameter("segundoApellido");
     String email = request.getParameter("Email");
 
-    String cedulaPedido = request.getParameter("cedulaPedido");
-    double monto = Double.parseDouble(request.getParameter("monto"));
-    String descripcion = request.getParameter("descripcion");
-    Date fechaPedido = Date.valueOf(request.getParameter("fechaPedido"));
-
     // Variables de conexión
     String url = "jdbc:mysql://localhost:3306/bd_pf";
     String user = "root";
@@ -21,72 +16,53 @@
     
     Connection conn = null;
     CallableStatement stmtCliente = null;
-    CallableStatement stmtPedido = null;
-    Statement stmtExistente = null;
-    ResultSet rsExistente = null;
+    PreparedStatement checkCedulaStmt = null;
+    ResultSet rs = null;
 
     try {
         // Conectar a la base de datos
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, user, password);
 
-        // Desactivar autocommit para manejar transacciones manualmente
-        conn.setAutoCommit(false);
+        // Verificar si la cédula ya existe
+        String checkCedulaQuery = "SELECT Cedula FROM cliente WHERE Cedula = ?";
+        checkCedulaStmt = conn.prepareStatement(checkCedulaQuery);
+        checkCedulaStmt.setString(1, identificacion);
+        rs = checkCedulaStmt.executeQuery();
 
-        // Verificar si el cliente ya existe
-        String sqlExistente = "SELECT COUNT(*) FROM cliente WHERE Cedula = ?";
-        stmtExistente = conn.createStatement();
-        PreparedStatement stmtCheck = conn.prepareStatement(sqlExistente);
-        stmtCheck.setString(1, identificacion);
-        rsExistente = stmtCheck.executeQuery();
-        
-        if (rsExistente.next() && rsExistente.getInt(1) > 0) {
-            // Si el cliente ya existe, enviar mensaje de error
-            out.println("<script>alert('El cliente con esta cédula ya existe.'); window.location.href='insertarP-C.jsp';</script>");
-            return; // Salir para evitar el resto de la ejecución
+        if (rs.next()) {
+            // La cédula ya existe en la base de datos
+            out.println("<script>alert('Error: La cédula ya está registrada.'); window.location.href='registrarCliente.jsp';</script>");
+        } else {
+            // La cédula no existe, insertar el nuevo cliente
+            String sqlCliente = "{CALL insertar_Cliente(?, ?, ?, ?, ?, ?)}";
+            stmtCliente = conn.prepareCall(sqlCliente);
+            stmtCliente.setString(1, identificacion);  // Cedula
+            stmtCliente.setString(2, primerNombre);    
+            stmtCliente.setString(3, segundoNombre);   
+            stmtCliente.setString(4, primerApellido);  
+            stmtCliente.setString(5, segundoApellido); 
+            stmtCliente.setString(6, email);           
+            stmtCliente.executeUpdate();
+
+            // Mensaje de éxito
+            out.println("<script>alert('Cliente registrado exitosamente.'); window.location.href='menu.jsp';</script>");
         }
 
-        // Insertar el cliente usando el procedimiento almacenado
-        String sqlCliente = "{CALL insertar_Cliente(?, ?, ?, ?, ?, ?)}";
-        stmtCliente = conn.prepareCall(sqlCliente);
-        stmtCliente.setString(1, identificacion);  // Cedula
-        stmtCliente.setString(2, primerNombre);    
-        stmtCliente.setString(3, segundoNombre);   
-        stmtCliente.setString(4, primerApellido);  
-        stmtCliente.setString(5, segundoApellido); 
-        stmtCliente.setString(6, email);           
-        stmtCliente.executeUpdate();
-
-        String sqlPedido = "{CALL insertar_Pedido(?, ?, ?, ?)}";
-        stmtPedido = conn.prepareCall(sqlPedido);
-        stmtPedido.setString(1, cedulaPedido);    // Cedula del cliente (relacionado con cliente)
-        stmtPedido.setDouble(2, monto);           
-        stmtPedido.setString(3, descripcion);     
-        stmtPedido.setDate(4, fechaPedido);       
-        stmtPedido.executeUpdate();
-
-        // Si todo va bien, hacer commit
-        conn.commit();
-
-        // Mensaje de éxito
-        out.println("<script>alert('Cliente y Pedido registrados exitosamente'); window.location.href='menu.jsp';</script>");
-        
-    } catch (Exception e) {
-        // En caso de error, hacer rollback para revertir todos los cambios
-        try {
-            if (conn != null) {
-                conn.rollback();
-            }
-        } catch (SQLException rollbackEx) {
-            rollbackEx.printStackTrace();
-        }
+    } catch (SQLException e) {
+        // Manejo de excepciones SQL
         e.printStackTrace();
-        out.println("<script>alert('LA CEDULA DEL PEDIDO NO COINCIDE CON LA DEL CLIENTE.'); window.location.href='insertarP-C.jsp';</script>");
+        out.println("<script>alert('Error de base de datos: " + e.getMessage() + "'); window.location.href='registrarCliente.jsp';</script>");
+    } catch (Exception e) {
+        // Manejo de excepciones generales
+        e.printStackTrace();
+        out.println("<script>alert('Error inesperado: " + e.getMessage() + "'); window.location.href='registrarCliente.jsp';</script>");
     } finally {
+        // Cerrar recursos
         try {
-            // Cerrar los recursos
+            if (rs != null) rs.close();
+            if (checkCedulaStmt != null) checkCedulaStmt.close();
             if (stmtCliente != null) stmtCliente.close();
-            if (stmtPedido != null) stmtPedido.close();
             if (conn != null) conn.close();
         } catch (SQLException e) {
             e.printStackTrace();

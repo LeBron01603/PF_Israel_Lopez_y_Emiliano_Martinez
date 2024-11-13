@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Redireccionar a la página de insertar
-    document.getElementById('btn-insertar').addEventListener('click', function() {
-        window.location.href = 'insertarP-C.jsp';
+    // Redireccionar a la página de insertar cliente
+    document.getElementById('btn-insertarCliente').addEventListener('click', function() {
+        window.location.href = 'insertarP-C.jsp';  // Página para insertar cliente o pedido
+    });
+
+    // Redireccionar a la página de insertar pedido
+    document.getElementById('btn-insertarPedido').addEventListener('click', function() {
+        window.location.href = 'insertarPedido.jsp';  // Página para insertar solo un pedido
     });
 
     // Redireccionar a la página de mantenimiento de cliente

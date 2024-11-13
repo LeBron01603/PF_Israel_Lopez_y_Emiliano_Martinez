@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Pedido</title>
+    <link rel="stylesheet" href="insertarP.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registrar Pedido</h2>
+        <form action="insertarPedido.jsp" method="post" onsubmit="return validarFormulario()">
+            
+            <!-- Sección de Datos del Pedido -->
+            <div class="section">
+                <h3>Datos del Pedido</h3>
+                <div class="grid-container">
+                    <div class="form-group">
+                        <label for="cedulaPedido">Cédula del Cliente</label>
+                        <input type="text" id="cedulaPedido" name="cedulaPedido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto">Monto</label>
+                        <input type="number" id="monto" name="monto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <input type="text" id="descripcion" name="descripcion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaPedido">Fecha de Pedido</label>
+                        <input type="date" id="fechaPedido" name="fechaPedido" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="submit">Registrar Pedido</button>
+                <button type="button" onclick="window.location.href='menu.jsp';">Volver</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validarFormulario() {
+            var cedula = document.getElementById('cedulaPedido').value.trim();
+            var monto = document.getElementById('monto').value.trim();
+
+            if (cedula === '') {
+                alert('El campo Cédula del Cliente es obligatorio.');
+                return false;
+            }
+
+            if (monto === '' || isNaN(monto) || parseFloat(monto) <= 0) {
+                alert('El monto debe ser un número positivo.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
