@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url('imagenes/tu-imagen.jpg'); /* Imagen de fondo para toda la página */
+    background-image: url('muestra general.jpg'); /* Imagen de fondo para toda la página */
     background-size: cover; /* La imagen cubrirá toda la pantalla */
     background-position: center; /* Centra la imagen */
     background-attachment: fixed; /* La imagen se mantiene fija cuando se hace scroll */
