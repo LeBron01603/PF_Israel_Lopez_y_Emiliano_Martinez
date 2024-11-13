@@ -18,12 +18,13 @@ body {
 
 /* Contenedor del menú */
 .Menu {
-    width: 500px; /* Aumentado el ancho del contenedor */
+    width: 400px;
     height: auto;
-    background: rgba(255, 255, 255, 0.8); /* Fondo más claro con transparencia */
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro con transparencia */
     border-radius: 15px;
     padding: 30px 20px;
-    color: #333;
+    color: #fff;
+    backdrop-filter: blur(10px); /* Fondo desenfocado */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
     display: flex;
     flex-direction: column;
@@ -36,7 +37,7 @@ body {
     font-size: 30px;
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2); /* Línea de separación */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Línea de separación */
     padding-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -56,23 +57,16 @@ body {
     align-items: center;
 }
 
-/* Contenedor de los botones (modificado para 3 columnas y 2 filas) */
-.button-container {
-    display: grid; /* Usamos grid para organizar los botones */
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    grid-gap: 15px; /* Espacio entre los botones */
-    width: 100%;
-    margin-bottom: 20px;
-}
-
 /* Estilo común para los botones */
 .Menu button {
+    margin-bottom: 12px;
     font-size: 14px;
     background-color: #4CAF50; /* Botones de color verde */
     color: #fff;
     border: none;
     border-radius: 30px;
     padding: 10px 20px;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,10 +85,25 @@ body {
     margin-right: 8px;
 }
 
-/* Estilo para los botones de mantenimiento y consultas */
-.mantenimiento button,
-.Consulta button {
+/* Contenedor para los botones Insertar Cliente, Insertar Pedido, etc. */
+.button-container {
+    display: grid;  /* Usamos grid para el diseño de las columnas y filas */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de tamaño igual */
+    grid-template-rows: repeat(2, 1fr); /* 2 filas de tamaño igual */
+    gap: 15px; /* Espacio entre los botones */
     width: 100%;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro pero transparente */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Estilo para los botones dentro del contenedor de botones */
+.insertar button,
+.mantenimiento button,
+.Consulta button,
+.salir button {
+    width: 100%; /* Los botones ocupan todo el espacio disponible */
 }
 
 /* Estilo para el botón "Salir" */
@@ -131,6 +140,7 @@ body {
     font-size: 16px; /* Reducción del tamaño del icono */
 }
 
+
 /* Diseño para la versión de tablet o móviles */
 @media (max-width: 600px) {
     .Menu {
@@ -143,12 +153,15 @@ body {
     }
 
     .button-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas más pequeñas */
+        grid-template-columns: 1fr 1fr;  /* 2 columnas en dispositivos móviles */
+        grid-template-rows: repeat(3, 1fr); /* 3 filas en dispositivos móviles */
         gap: 10px;
     }
 
-    .insertar button {
-        flex-basis: 100%; /* Los botones ocuparán todo el ancho */
+    .insertar button,
+    .mantenimiento button,
+    .Consulta button {
+        width: 100%;
     }
 
     .Menu button {

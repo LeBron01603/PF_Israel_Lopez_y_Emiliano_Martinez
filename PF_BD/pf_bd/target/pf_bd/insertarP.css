@@ -18,7 +18,8 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con algo de transparencia */
+    color: #fff; /* Cambiar el color del texto a blanco */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px); /* Aplica un desenfoque al fondo para mayor contraste */
@@ -28,7 +29,7 @@ body {
 h2 {
     font-size: 22px;
     margin-bottom: 20px;
-    color: #333;
+    color: #fff; /* Título blanco */
 }
 
 /* Sección de Datos del Pedido */
@@ -39,7 +40,7 @@ h2 {
 /* Título de la sección */
 h3 {
     font-size: 18px;
-    color: #333;
+    color: #fff; /* Títulos de sección blancos */
     margin-bottom: 15px;
 }
 
@@ -60,7 +61,7 @@ h3 {
 label {
     font-size: 16px;
     margin-bottom: 5px;
-    color: #333;
+    color: #fff; /* Etiquetas de los campos en blanco */
 }
 
 input {
@@ -70,6 +71,8 @@ input {
     border-radius: 5px;
     width: 100%;
     box-sizing: border-box;
+    background-color: #333; /* Fondo oscuro para los inputs */
+    color: #fff; /* Texto blanco en los campos de entrada */
 }
 
 input[type="number"],

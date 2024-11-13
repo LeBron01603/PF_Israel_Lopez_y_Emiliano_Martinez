@@ -1,56 +1,49 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
-    background-image: url('insertar cliente.jpg'); /* Cambia 'tu-imagen.jpg' con el nombre de tu imagen */
-    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
-    background-position: center; /* Centra la imagen */
-    background-attachment: fixed; /* Fija la imagen mientras haces scroll */
+    font-family: "Poppins", sans-serif;
 }
 
-/* Contenedor principal del formulario */
+body {
+    background-color: #f4f4f4;  /* Fondo general claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .container {
-    width: 80%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia (0.7) */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-image: none; /* Eliminamos la imagen de fondo en el contenedor */
-    backdrop-filter: blur(5px); /* Aplica un desenfoque al fondo */
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para que no se expanda demasiado */
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro con algo de transparencia */
+    color: #fff; /* Cambiar el color del texto a blanco */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Título principal */
 h2 {
-    font-size: 22px;
+    text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    font-size: 28px;
 }
 
-/* Sección de Datos del Cliente */
 .section {
     margin-bottom: 20px;
 }
 
-/* Título de la sección */
-h3 {
-    font-size: 18px;
-    color: #333;
+.section h3 {
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
-/* Estilo de la cuadrícula para los campos */
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
     gap: 20px;
 }
 
-/* Estilo de los grupos de formularios */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -60,81 +53,42 @@ h3 {
 label {
     font-size: 16px;
     margin-bottom: 5px;
-    color: #333;
 }
 
 input {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-input[type="text"],
-input[type="email"] {
-    height: 40px;
+    background: #333;
+    color: #fff;
 }
 
 input:focus {
-    border-color: #4CAF50;
+    border-color: #00bcd4; /* Cambio de borde cuando el input tiene foco */
     outline: none;
 }
 
-/* Botones */
 button {
     padding: 12px 25px;
     font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
     border: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Botón Submit */
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    margin-top: 15px;
-    padding: 12px 20px;
-    border-radius: 5px;
+    background-color: #00bcd4;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-/* Botón Volver */
-button[type="button"] {
-    background-color: #f44336;
-    color: white;
-    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-left: auto; /* Mueve el botón Volver al lado derecho */
+}
+
+button[type="button"] {
+    background-color: #f44336;  /* Rojo para el botón de volver */
+}
+
+button:hover {
+    background-color: #00796b; /* Efecto hover para los botones */
 }
 
 button[type="button"]:hover {
-    background-color: #e53935;
-}
-
-/* Estilos para los mensajes de validación */
-.alert {
-    background-color: #f44336;
-    color: white;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    display: none; /* Inicialmente oculto */
+    background-color: #d32f2f;
 }
