@@ -1,4 +1,4 @@
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*, java.io.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="es">
 <head>
@@ -19,22 +19,15 @@
             fetch('insertarP-C.jsp?accion=consultarCliente&cedula=' + cedula)
                 .then(response => response.json())  // Esperamos una respuesta en formato JSON
                 .then(data => {
-                    // Verificamos si hay un error en el servidor
-                    if (data.error) {
-                        console.error('Error del servidor:', data.error);
-                        alert('Hubo un error en el servidor: ' + data.error);
-                        return;
-                    }
-
-                    // Si el cliente existe, mostrar el formulario de pedido
                     if (data.existe) {
+                        // El cliente existe, mostrar el formulario de pedido
                         alert("El cliente ya existe.");
                         document.getElementById("clienteExistente").style.display = "block";
                         document.getElementById("btnRegistrarPedido").disabled = false;
                         document.getElementById("datosCliente").style.display = "none"; // Ocultar formulario de cliente
                         document.getElementById("cedulaPedido").value = cedula;
                     } else {
-                        // Si el cliente no existe, mostrar el formulario de registro de cliente
+                        // El cliente no existe, mostrar el formulario de registro de cliente
                         alert("El cliente no existe. Ingrese los datos.");
                         document.getElementById("datosCliente").style.display = "block"; // Mostrar formulario de cliente
                         document.getElementById("clienteExistente").style.display = "none"; // Ocultar formulario de pedido
@@ -50,7 +43,7 @@
 <body>
     <div class="container">
         <h2>Registrar Cliente y Pedido</h2>
-        <form action="insertarP-C.jsp" method="post" onsubmit="return validarFormulario()">
+        <form action="insertarP-C.jsp" method="post">
             <!-- Sección de Consulta de Cliente -->
             <div class="section">
                 <h3>Consultar Cliente</h3>
@@ -70,20 +63,12 @@
                         <input type="text" id="tfNombre1" name="primerNombre" required>
                     </div>
                     <div class="form-group">
-                        <label for="tfNombre2">Segundo Nombre</label>
-                        <input type="text" id="tfNombre2" name="segundoNombre">
-                    </div>
-                    <div class="form-group">
                         <label for="tfApellido1">Primer Apellido</label>
                         <input type="text" id="tfApellido1" name="primerApellido" required>
                     </div>
                     <div class="form-group">
-                        <label for="tfApellido2">Segundo Apellido</label>
-                        <input type="text" id="tfApellido2" name="segundoApellido">
-                    </div>
-                    <div class="form-group">
                         <label for="E-mail">E-mail</label>
-                        <input type="email" id="E-mail" name="Email">
+                        <input type="email" id="E-mail" name="Email" required>
                     </div>
                 </div>
                 <button type="submit" name="accion" value="registrarCliente">Registrar Cliente</button>
@@ -123,9 +108,7 @@
         String accion = request.getParameter("accion");
         String identificacion = request.getParameter("identificacion");
         String primerNombre = request.getParameter("primerNombre");
-        String segundoNombre = request.getParameter("segundoNombre");
         String primerApellido = request.getParameter("primerApellido");
-        String segundoApellido = request.getParameter("segundoApellido");
         String email = request.getParameter("Email");
         String cedulaPedido = request.getParameter("cedulaPedido");
         double monto = 0;
@@ -146,6 +129,7 @@
         CallableStatement stmtConsultarCliente = null;
         ResultSet rsCliente = null;
 
+        // Acción de consultar cliente
         if ("consultarCliente".equals(accion)) {
             boolean existe = false;
             try {
@@ -173,6 +157,64 @@
                 try {
                     if (rsCliente != null) rsCliente.close();
                     if (stmtConsultarCliente != null) stmtConsultarCliente.close();
+                    if (conn != null) conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Acción de registrar cliente
+        if ("registrarCliente".equals(accion)) {
+            try {
+                // Conectar a la base de datos
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conn = DriverManager.getConnection(url, user, password);
+
+                // Procedimiento para registrar cliente
+                String sqlRegistrarCliente = "{CALL RegistrarCliente(?, ?, ?, ?)}";
+                CallableStatement stmtRegistrarCliente = conn.prepareCall(sqlRegistrarCliente);
+                stmtRegistrarCliente.setString(1, identificacion);
+                stmtRegistrarCliente.setString(2, primerNombre);
+                stmtRegistrarCliente.setString(3, primerApellido);
+                stmtRegistrarCliente.setString(4, email);
+
+                stmtRegistrarCliente.executeUpdate();
+                out.print("<script>alert('Cliente registrado exitosamente.');</script>");
+            } catch (Exception e) {
+                e.printStackTrace();
+                out.print("<script>alert('Hubo un error al registrar el cliente: " + e.getMessage() + "');</script>");
+            } finally {
+                try {
+                    if (conn != null) conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Acción de registrar pedido
+        if ("registrarPedido".equals(accion)) {
+            try {
+                // Conectar a la base de datos
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conn = DriverManager.getConnection(url, user, password);
+
+                // Procedimiento para registrar pedido
+                String sqlRegistrarPedido = "{CALL RegistrarPedido(?, ?, ?, ?, ?)}";
+                CallableStatement stmtRegistrarPedido = conn.prepareCall(sqlRegistrarPedido);
+                stmtRegistrarPedido.setString(1, cedulaPedido);
+                stmtRegistrarPedido.setDouble(2, monto);
+                stmtRegistrarPedido.setString(3, descripcion);
+                stmtRegistrarPedido.setDate(4, fechaPedido);
+
+                stmtRegistrarPedido.executeUpdate();
+                out.print("<script>alert('Pedido registrado exitosamente.');</script>");
+            } catch (Exception e) {
+                e.printStackTrace();
+                out.print("<script>alert('Hubo un error al registrar el pedido: " + e.getMessage() + "');</script>");
+            } finally {
+                try {
                     if (conn != null) conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
