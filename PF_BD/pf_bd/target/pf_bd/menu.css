@@ -72,12 +72,13 @@ body {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Efecto hover para los botones */
 .Menu button:hover {
     background-color: #45a049;
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba */
 }
 
 /* Espacio entre los íconos y el texto de los botones */
@@ -93,9 +94,10 @@ body {
     gap: 15px; /* Espacio entre los botones */
     width: 100%;
     margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro pero transparente */
+    background: rgba(255, 255, 255, 0.3); /* Fondo claro semi-transparente para ver la imagen de fondo */
     padding: 15px;
     border-radius: 10px;
+    backdrop-filter: blur(5px); /* Desenfoque en el fondo */
 }
 
 /* Estilo para los botones dentro del contenedor de botones */
@@ -139,7 +141,6 @@ body {
 .bx {
     font-size: 16px; /* Reducción del tamaño del icono */
 }
-
 
 /* Diseño para la versión de tablet o móviles */
 @media (max-width: 600px) {

@@ -19,7 +19,7 @@ body {
 /* Contenedor principal de la ventana */
 .ventana {
     width: 100%; 
-    max-width: 1200px; /* Ancho máximo de la ventana */
+    max-width: 800px; /* Ancho máximo de la ventana */
     background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
     border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -48,79 +48,56 @@ body {
     border-top: 1px solid #ccc;
 }
 
-/* Tabla de clientes */
-.user-table {
-    width: 100%;
-    margin: 20px 0;
-    border-collapse: collapse;
-    font-size: 16px;
+/* Formulario de actualización */
+#formulario-actualizar {
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+/* Estilos de los campos de entrada */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
     color: #fff;
-    table-layout: auto; /* Ajusta el tamaño de las columnas según el contenido */
+    margin-bottom: 5px;
 }
 
-.user-table th,
-.user-table td {
+.form-group input {
+    width: 100%;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
 }
 
-/* Encabezados de la tabla */
-.user-table th {
-    background-color: rgba(255, 255, 255, 0.1);
-    font-weight: bold;
-    min-width: 120px; /* Asegura que las columnas tengan suficiente espacio */
-}
-
-/* Estilo para las acciones (editar/eliminar) */
-.user-table td.actions {
-    text-align: center;
-}
-
-.user-table td form {
-    display: inline-block;
-    margin: 0;
-}
-
-/* Botones (Editar/Eliminar) */
-.btn-editar,
-.btn-eliminar {
-    background-color: #ffcc00;
-    color: black;
+/* Botón de actualizar */
+.btn-editar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 6px 15px;
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-    font-size: 14px;
-}
-
-.btn-editar {
-    background-color: #ffcc00;
+    transition: background-color 0.3s;
 }
 
 .btn-editar:hover {
-    background-color: #e6b800;
+    background-color: #45a049;
 }
 
-.btn-eliminar {
-    background-color: #ff4d4d;
-    color: white;
-}
-
-.btn-eliminar:hover {
-    background-color: #e60000;
-}
-
-/* Estilo para el botón salir */
+/* Botón salir */
 .btn-exit {
-    padding: 10px 22px;
-    background-color: #ff4d4d;
+    background-color: #f44336;
     color: white;
+    padding: 10px 22px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -128,7 +105,7 @@ body {
 }
 
 .btn-exit:hover {
-    background-color: #ff6666;
+    background-color: #e53935;
 }
 
 /* Estilos del contenedor de las acciones (botones de salir y editar) */
@@ -141,14 +118,14 @@ body {
 
 /* Responsividad */
 @media (max-width: 768px) {
-    .user-table th, .user-table td {
-        font-size: 14px; /* Reducir tamaño de fuente en pantallas pequeñas */
+    .form-group input {
+        font-size: 14px;
         padding: 8px;
     }
 
-    .btn-editar, .btn-eliminar {
-        font-size: 12px; /* Botones más pequeños en pantallas pequeñas */
-        padding: 5px 10px;
+    .btn-editar {
+        font-size: 12px;
+        padding: 8px 15px;
     }
 
     .ventana {
@@ -157,6 +134,6 @@ body {
     }
 
     .Listados h2 {
-        font-size: 24px; /* Reducir tamaño del título */
+        font-size: 24px;
     }
 }
