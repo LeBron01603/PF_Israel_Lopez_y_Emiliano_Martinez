@@ -29,11 +29,13 @@
 
             <%-- Conexión a la base de datos --%>
             <%
+                // Variables de conexión y declaración de JDBC
                 String URL = "jdbc:mysql://localhost:3306/bd_pf";
                 String nombreUsuario = "root";
                 String nombreClave = "Isra1107.";
+
                 Connection conn = null;
-                CallableStatement stmt = null;
+                CallableStatement stmt = null; // Usamos CallableStatement
                 ResultSet rs = null;
 
                 try {
@@ -41,14 +43,14 @@
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     conn = DriverManager.getConnection(URL, nombreUsuario, nombreClave);
 
-                    // Llamar al procedimiento almacenado 'obtenerCliente' con el id del cliente
+                    // Llamar al procedimiento almacenado 'obtenerCliente'
                     String cedula = request.getParameter("idCliente");
-                    String sql = "SELECT * FROM clientes WHERE Cedula = ?";
-                    stmt = conn.prepareStatement(sql);
-                    stmt.setString(1, cedula);
-                    rs = stmt.executeQuery();
+                    String sql = "{CALL obtenerCliente(?)}";  // Procedimiento almacenado con parámetro
+                    stmt = conn.prepareCall(sql);
+                    stmt.setString(1, cedula);  // Pasamos el parámetro de la cédula
+                    rs = stmt.executeQuery();  // Ejecutar el procedimiento almacenado y obtener el ResultSet
             %>
-            
+
             <div id="formulario-actualizar">
                 <% if (rs.next()) { %>
                 <form method="POST" action="ActualizarCliente.jsp" enctype="multipart/form-data">
@@ -81,9 +83,11 @@
                         <button type="submit" class="btn-editar">Actualizar</button>
                     </div>
                 </form>
+                <% } else { %>
+                    <p>No se encontró el cliente.</p>
                 <% } %>
             </div>
-            
+
             <% 
                 } catch (ClassNotFoundException | SQLException e) {
                     out.println("Error: " + e.getMessage());
