@@ -1,4 +1,3 @@
-/* Establecer márgenes y rellenos para todo */
 * {
     margin: 0;
     padding: 0;
@@ -6,152 +5,115 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Cuerpo con fondo de imagen */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('menu prin.jpg') no-repeat center center;
+    background: url('inicio.jpg') no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
-/* Contenedor del menú */
-.Menu {
-    width: 500px; /* Aumentado el ancho del contenedor */
-    height: auto;
-    background: rgba(255, 255, 255, 0.8); /* Fondo más claro con transparencia */
+.Login {
+    width: 450px; /* Aumento el tamaño del contenedor para acomodar más botones */
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
     border-radius: 15px;
-    padding: 30px 20px;
-    color: #333;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative; /* Para posicionar el botón "Salir" correctamente */
+    padding: 30px 40px;
 }
 
-/* Estilo del título del menú */
-.Menu h2 {
-    font-size: 30px;
+.Login h2 {
+    font-size: 36px;
     text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2); /* Línea de separación */
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Espacio entre el título y el ícono */
-.Menu h2 i {
-    margin-top: 10px;
-}
-
-/* Contenedor del formulario */
-.Menu form {
-    display: flex;
-    flex-direction: column;
+.Login .usuario {
+    position: relative;
     width: 100%;
-    align-items: center;
+    height: 50px;
+    margin: 20px 0;
 }
 
-/* Contenedor de los botones (modificado para 3 columnas y 2 filas) */
-.button-container {
-    display: grid; /* Usamos grid para organizar los botones */
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    grid-gap: 15px; /* Espacio entre los botones */
+.usuario input {
     width: 100%;
-    margin-bottom: 20px;
-}
-
-/* Estilo común para los botones */
-.Menu button {
-    font-size: 14px;
-    background-color: #4CAF50; /* Botones de color verde */
-    color: #fff;
+    height: 100%;
+    background: transparent;
     border: none;
-    border-radius: 30px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-/* Efecto hover para los botones */
-.Menu button:hover {
-    background-color: #45a049;
-}
-
-/* Espacio entre los íconos y el texto de los botones */
-.Menu button i {
-    margin-right: 8px;
-}
-
-/* Estilo para los botones de mantenimiento y consultas */
-.mantenimiento button,
-.Consulta button {
-    width: 100%;
-}
-
-/* Estilo para el botón "Salir" */
-.salir button {
-    position: absolute;
-    bottom: 10px; /* Alineado a la parte inferior */
-    right: 10px; /* Alineado a la derecha */
-    background-color: #f44336;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
     color: #fff;
-    padding: 6px 12px;  /* Reducido el padding para hacerlo más pequeño */
-    border-radius: 20px; /* Borde redondeado más pequeño */
-    font-size: 12px; /* Tamaño de fuente pequeño */
+    padding: 20px 45px 20px 20px;
+}
+
+.usuario input::placeholder {
+    color: #fff;
+}
+
+.usuario i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
+
+.Login .recordarU {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.recordar label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+/* Contenedor de botones con fondo oscuro y transparente */
+.Login .botones {
+    display: grid;  /* Usar grid para la disposición */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    grid-template-rows: repeat(2, 1fr); /* 2 filas */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro y transparente */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Estilo de los botones */
+.Login .botones button {
+    width: 100%; /* Asegura que los botones ocupen todo el espacio de su celda */
+    font-size: 16px;
+    background: #fff;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: auto;  /* Asegurarse de que no ocupe todo el ancho */
+    font-weight: 600;
 }
 
-/* Efecto hover para el botón "Salir" */
-.salir button:hover {
-    background-color: #e53935;
+.Login .Registrarse {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
 }
 
-/* Icono dentro del botón */
-.salir button i {
-    margin-right: 5px; /* Menos espacio entre el icono y el texto */
+.Registrarse p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
-/* Iconos en los botones */
-.bx {
-    font-size: 16px; /* Reducción del tamaño del icono */
-}
-
-/* Diseño para la versión de tablet o móviles */
-@media (max-width: 600px) {
-    .Menu {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .Menu h2 {
-        font-size: 24px;
-    }
-
-    .button-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas más pequeñas */
-        gap: 10px;
-    }
-
-    .insertar button {
-        flex-basis: 100%; /* Los botones ocuparán todo el ancho */
-    }
-
-    .Menu button {
-        font-size: 12px; /* Reducir tamaño de texto en botones para pantallas pequeñas */
-    }
+.Registrarse p a:hover {
+    text-decoration: underline;
 }

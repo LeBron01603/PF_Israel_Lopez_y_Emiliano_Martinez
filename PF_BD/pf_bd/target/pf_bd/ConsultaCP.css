@@ -7,33 +7,28 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url('imagenes/tu-imagen.jpg'); /* Reemplaza 'tu-imagen.jpg' con la ruta de tu imagen */
+    background-image: url('imagenes/tu-imagen.jpg'); /* Imagen de fondo para toda la página */
     background-size: cover; /* La imagen cubrirá toda la pantalla */
     background-position: center; /* Centra la imagen */
     background-attachment: fixed; /* La imagen se mantiene fija cuando se hace scroll */
+    height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Main container */
 .ventana {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
     width: 80%;
     max-width: 900px;
     overflow: hidden;
-    background-image: url('muestra general.jpg'); /* Reemplaza 'tu-imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* La imagen cubrirá el contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* La imagen no se repetirá */
 }
 
+/* Title section */
 .title-icon-wrapper {
     text-align: center;
 }
