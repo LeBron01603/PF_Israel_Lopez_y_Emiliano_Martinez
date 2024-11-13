@@ -14,11 +14,11 @@
         <form method="post" action="">
             <div class="insertar">
                 <i class='bx bxs-user-plus'></i>
-                <button type="button" onclick="window.location.href='insertarCliente.jsp'">Insertar Cliente</button>
+                <button type="button" onclick="window.location.href='insertarClienteYPedido.jsp'">Insertar Cliente</button>
             </div>
             <div class="mantenimiento">
                 <i class='bx bx-wrench'></i>
-                <button type="button" onclick="window.location.href='consultarCliente.jsp'">Consultar Cliente</button>
+                <button type="button" onclick="window.location.href='consultarC.jsp'">Consultar Cliente</button>
             </div>
             <div class="mantenimiento">
                 <i class='bx bx-wrench'></i>
