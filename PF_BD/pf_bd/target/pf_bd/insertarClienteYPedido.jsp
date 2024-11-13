@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.Date" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -96,7 +96,8 @@
             String cedula = request.getParameter("cedula");
             double monto = Double.parseDouble(request.getParameter("montoPedido"));
             String descripcion = request.getParameter("descripcionPedido");
-            Date fechaPedido = Date.valueOf(request.getParameter("fechaPedido"));
+            // Cambiado para usar java.sql.Date
+            java.sql.Date fechaPedido = java.sql.Date.valueOf(request.getParameter("fechaPedido"));
 
             String url = "jdbc:mysql://localhost:3306/bd_pf";
             String user = "root";
@@ -108,7 +109,7 @@
                     stmt.setString(1, cedula);
                     stmt.setDouble(2, monto);
                     stmt.setString(3, descripcion);
-                    stmt.setDate(4, fechaPedido);
+                    stmt.setDate(4, fechaPedido);  // Asegúrate de usar java.sql.Date aquí
                     int rows = stmt.executeUpdate();
                     if (rows > 0) {
                         out.println("<script>alert('Pedido registrado exitosamente');</script>");
