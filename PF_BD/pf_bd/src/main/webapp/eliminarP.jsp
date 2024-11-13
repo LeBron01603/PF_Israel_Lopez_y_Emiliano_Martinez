@@ -6,7 +6,7 @@
     String idPedido = request.getParameter("idPedido");
 
     // Variables de conexión y declaración de JDBC
-    String URL = "jdbc:mysql://localhost:3306/proyecto_bd";
+    String URL = "jdbc:mysql://localhost:3306/bd_pf";
     String nombreUsuario = "root";
     String nombreClave = "Isra1107.";
 

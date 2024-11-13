@@ -15,7 +15,7 @@
     Date fechaPedido = Date.valueOf(request.getParameter("fechaPedido"));
 
     // Variables de conexión
-    String url = "jdbc:mysql://localhost:3306/proyecto_bd";
+    String url = "jdbc:mysql://localhost:3306/bd_pf";
     String user = "root";
     String password = "Isra1107.";
     
