@@ -101,79 +101,22 @@
             String url = "jdbc:mysql://localhost:3306/bd_pf";
             String user = "root";
             String password = "Isra1107.";
-            Connection conn = null;
-            PreparedStatement stmt = null;
-
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection(url, user, password);
-
-                // Insertar el pedido
-                String sqlPedido = "INSERT INTO pedido (CedulaCliente, Monto, Descripcion, FechaPedido) VALUES (?, ?, ?, ?)";
-                stmt = conn.prepareStatement(sqlPedido);
-                stmt.setString(1, cedula);
-                stmt.setDouble(2, monto);
-                stmt.setString(3, descripcion);
-                stmt.setDate(4, fechaPedido);
-                stmt.executeUpdate();
-
-                out.println("<script>alert('Pedido registrado exitosamente'); window.location.href='menu.jsp';</script>");
-            } catch (Exception e) {
-                e.printStackTrace();
-                out.println("<script>alert('Error al registrar el pedido.'); window.location.href='insertarClienteYPedido.jsp?cedula=" + cedula + "';</script>");
-            } finally {
-                try {
-                    if (stmt != null) stmt.close();
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+                // Registrar Pedido
+                String sqlPedido = "INSERT INTO pedidos (cedula_cliente, monto, descripcion, fecha_pedido) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(sqlPedido)) {
+                    stmt.setString(1, cedula);
+                    stmt.setDouble(2, monto);
+                    stmt.setString(3, descripcion);
+                    stmt.setDate(4, fechaPedido);
+                    int rows = stmt.executeUpdate();
+                    if (rows > 0) {
+                        out.println("<script>alert('Pedido registrado exitosamente');</script>");
+                    }
                 }
-            }
-        }
-
-        // Si el formulario fue enviado, registrar al cliente
-        if (request.getMethod().equalsIgnoreCase("POST") && request.getParameter("cedula") != null) {
-            String cedula = request.getParameter("cedula");
-            String primerNombre = request.getParameter("primerNombre");
-            String segundoNombre = request.getParameter("segundoNombre");
-            String primerApellido = request.getParameter("primerApellido");
-            String segundoApellido = request.getParameter("segundoApellido");
-            String email = request.getParameter("email");
-
-            // Variables de conexión
-            String url = "jdbc:mysql://localhost:3306/bd_pf";
-            String user = "root";
-            String password = "Isra1107.";
-            Connection conn = null;
-            PreparedStatement stmt = null;
-
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection(url, user, password);
-
-                // Insertar el cliente
-                String sqlCliente = "INSERT INTO cliente (Cedula, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email) VALUES (?, ?, ?, ?, ?, ?)";
-                stmt = conn.prepareStatement(sqlCliente);
-                stmt.setString(1, cedula);
-                stmt.setString(2, primerNombre);
-                stmt.setString(3, segundoNombre);
-                stmt.setString(4, primerApellido);
-                stmt.setString(5, segundoApellido);
-                stmt.setString(6, email);
-                stmt.executeUpdate();
-
-                // Redirigir a la página de registrar pedido
-                out.println("<script>window.location.href='insertarClienteYPedido.jsp?cedula=" + cedula + "';</script>");
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
-                out.println("<script>alert('Error al registrar al cliente.'); window.location.href='insertarClienteYPedido.jsp';</script>");
-            } finally {
-                try {
-                    if (stmt != null) stmt.close();
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                out.println("<script>alert('Error al registrar el pedido: " + e.getMessage() + "');</script>");
             }
         }
     %>
