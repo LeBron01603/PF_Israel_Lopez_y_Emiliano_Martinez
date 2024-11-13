@@ -19,11 +19,11 @@
         CallableStatement stmt = conn.prepareCall("{CALL Verificar_Usuario(?, ?, ?)}");
         stmt.setString(1, idUsuario);
         stmt.setString(2, contrasena);
-        stmt.registerOutParameter(3, Types.BOOLEAN);
+        stmt.registerOutParameter(3, Types.INTEGER);
 
         // Ejecutar procedimiento y obtener el resultado
         stmt.execute();
-        usuarioValido = stmt.getBoolean(3);
+        usuarioValido = stmt.getInt(3) == 1;  // 1 indica usuario válido, 0 inválido
 
         // Validar resultado
         if (usuarioValido) {

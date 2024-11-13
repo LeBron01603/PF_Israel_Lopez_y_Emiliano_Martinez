@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Cliente y Pedido</title>
-    <link rel="stylesheet" href="insertarP-C.css"> <!-- Vincula el archivo CSS externo -->
+    <link rel="stylesheet" href="insertarP-C.css">
 </head>
 <body>
     <div class="container">
@@ -66,7 +66,8 @@
             </div>
 
             <div class="button-container">
-                <button type="submit">Enviar Pedido</button>
+                <button type="submit" name="accion" value="registrarCliente">Registrar Cliente</button>
+                <button type="submit" name="accion" value="registrarPedido">Registrar Pedido</button>
                 <button type="button" onclick="window.location.href='menu.jsp';">Volver</button>
             </div>
         </form>
@@ -102,6 +103,5 @@
             return true;
         }
     </script>
-    
 </body>
 </html>
