@@ -18,6 +18,12 @@
             fetch('insertarP-C.jsp?accion=consultarCliente&cedula=' + cedula)
                 .then(response => response.json())  // Esperamos una respuesta en formato JSON
                 .then(data => {
+                    if (data.error) {
+                        console.error('Error del servidor:', data.error);
+                        alert('Hubo un error en el servidor: ' + data.error);
+                        return;
+                    }
+
                     if (data.existe) {
                         alert("El cliente ya existe.");
                         document.getElementById("clienteExistente").style.display = "block";
@@ -132,13 +138,10 @@
         String user = "root";
         String password = "Isra1107.";  // Cambia si es necesario
         Connection conn = null;
-        CallableStatement stmtCliente = null;
-        CallableStatement stmtPedido = null;
         CallableStatement stmtConsultarCliente = null;
         ResultSet rsCliente = null;
 
         if ("consultarCliente".equals(accion)) {
-            // Verificación de existencia de cliente
             boolean existe = false;
             try {
                 // Conectar a la base de datos
@@ -151,16 +154,16 @@
                 stmtConsultarCliente.setString(1, identificacion);
                 rsCliente = stmtConsultarCliente.executeQuery();
 
-                // Si el cliente existe, marcar como "existe"
+                // Comprobar si la respuesta contiene el campo 'existe'
                 if (rsCliente.next()) {
-                    existe = true;
+                    existe = rsCliente.getInt("existe") == 1;  // Verificar si la columna 'existe' es 1
                 }
 
                 // Enviar respuesta en formato JSON
                 out.print("{\"existe\": " + existe + "}");
             } catch (Exception e) {
                 e.printStackTrace();
-                out.print("{\"existe\": false}");
+                out.print("{\"existe\": false, \"error\": \"" + e.getMessage() + "\"}");
             } finally {
                 try {
                     if (rsCliente != null) rsCliente.close();

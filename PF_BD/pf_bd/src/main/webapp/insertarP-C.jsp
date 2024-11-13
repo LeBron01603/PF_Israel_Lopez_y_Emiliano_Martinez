@@ -138,8 +138,6 @@
         String user = "root";
         String password = "Isra1107.";  // Cambia si es necesario
         Connection conn = null;
-        CallableStatement stmtCliente = null;
-        CallableStatement stmtPedido = null;
         CallableStatement stmtConsultarCliente = null;
         ResultSet rsCliente = null;
 
@@ -156,7 +154,7 @@
                 stmtConsultarCliente.setString(1, identificacion);
                 rsCliente = stmtConsultarCliente.executeQuery();
 
-                // Si la consulta devuelve un resultado
+                // Comprobar si la respuesta contiene el campo 'existe'
                 if (rsCliente.next()) {
                     existe = rsCliente.getInt("existe") == 1;  // Verificar si la columna 'existe' es 1
                 }
