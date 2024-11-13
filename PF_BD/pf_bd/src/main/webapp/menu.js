@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Redireccionar a la página de insertar
     document.getElementById('btn-insertar').addEventListener('click', function() {
-        window.location.href = 'insertarP-C.jsp';
+        window.location.href = 'insertarCliente.jsp';
     });
 
     // Redireccionar a la página de mantenimiento de cliente
