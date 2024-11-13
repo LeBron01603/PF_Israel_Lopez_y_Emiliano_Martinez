@@ -1,151 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.*" %> <!-- Importa las clases de JDBC necesarias -->
-<%@ page import="javax.servlet.*, javax.servlet.http.*" %>
+<%@ page import="java.sql.*, javax.servlet.*, javax.servlet.http.*" %>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Cliente y Pedido</title>
-    <link rel="stylesheet" href="ConsultaCP.css">
+    <title>Actualizar Cliente</title>
+    <link rel="stylesheet" href="ConsultaC.css">
     <script>
-        function confirmarBusqueda(form) {
-            if (form.cedula.value.trim() === "") {
-                alert("Por favor, ingrese una cédula.");
-                return false;
+        function confirmarEliminacion(form) {
+            if (confirm("¿Está seguro de que desea ELIMINAR este CLIENTE con su PEDIDO?")) {
+                form.submit();
+            } else {
+                window.location.href = "ConsultaC.jsp";
             }
-            return true;
+            return false;
         }
     </script>
 </head>
 <body>
     <div class="ventana">
-        <div class="title-icon-wrapper">
-            <h2>Consulta de Cliente y Pedido</h2>
-        </div>
-        <hr class="title-divider">
-
-        <form action="ConsultaCP.jsp" method="get" onsubmit="return confirmarBusqueda(this);">
-            <div class="form-row">
-                <label for="cedula">Cédula del Cliente:</label>
-                <input type="text" id="cedula" name="cedula" placeholder="Ingrese la cédula" required>
-                <button type="submit" class="btn-buscar">Buscar</button>
+        <div class="Listado">
+            <div class="title-icon-wrapper">
+                <h2>Actualizar Cliente</h2>
             </div>
-        </form>
+            <hr class="title-divider">
 
-        <%-- Obtener la cédula ingresada y realizar la consulta --%>
-        <% 
-            String cedulaCliente = request.getParameter("cedula");
-
-            if (cedulaCliente != null && !cedulaCliente.trim().isEmpty()) {
-                // Variables de conexión y declaración de JDBC
+            <%-- Conexión a la base de datos --%>
+            <%
                 String URL = "jdbc:mysql://localhost:3306/bd_pf";
                 String nombreUsuario = "root";
                 String nombreClave = "Isra1107.";
-
                 Connection conn = null;
-                CallableStatement stmt = null;
+                PreparedStatement stmt = null; // Corregido a PreparedStatement
                 ResultSet rs = null;
 
                 try {
-                    Class.forName("com.mysql.cj.jdbc.Driver"); // Asegúrate de tener el JAR de MySQL en el classpath
+                    // Cargar el driver de MySQL
+                    Class.forName("com.mysql.cj.jdbc.Driver");
                     conn = DriverManager.getConnection(URL, nombreUsuario, nombreClave);
 
-                    String sql = "{CALL Consultar_PedidoCliente(?)}"; // Procedimiento almacenado
-                    stmt = conn.prepareCall(sql);
-                    stmt.setString(1, cedulaCliente); // Pasar la cédula como parámetro
+                    // Llamar a la consulta para obtener los datos del cliente
+                    String cedula = request.getParameter("idCliente");
+                    String sql = "SELECT * FROM clientes WHERE Cedula = ?";
+                    stmt = conn.prepareStatement(sql); // Usar PreparedStatement
+                    stmt.setString(1, cedula);
                     rs = stmt.executeQuery();
-
-                    // Variables para manejar la existencia de cliente y pedidos
-                    boolean clienteEncontrado = false;
-                    boolean pedidosExistentes = false;
-
-                    // Iterar sobre los resultados
-                    while (rs.next()) {
-                        // Mostrar los detalles del cliente solo una vez
-                        if (!clienteEncontrado) {
-                            clienteEncontrado = true;
-                            // Si encontramos al cliente, mostrar sus datos
-        %>
-        <!-- Mostrar los resultados del cliente -->
-        <div id="resultado-cliente">
-            <h3>Detalles del Cliente</h3>
-            <table class="cliente-table">
-                <tr>
-                    <th>Cédula</th>
-                    <td><%= cedulaCliente %></td>
-                </tr>
-                <tr>
-                    <th>Nombre</th>
-                    <td><%= rs.getString("Nombre1") %></td>
-                </tr>
-                <tr>
-                    <th>Apellido</th>
-                    <td><%= rs.getString("Apellido1") %></td>
-                </tr>
-            </table>
-        </div>
-        <% 
-                        }
-
-                        // Comprobar si existen pedidos para el cliente
-                        if (rs.getInt("id_pedido") != 0) {
-                            if (!pedidosExistentes) {
-        %>
-            <h3>Pedidos del Cliente</h3>
-            <table class="pedido-table">
-                <thead>
-                    <tr>
-                        <th>ID Pedido</th>
-                        <th>Monto</th>
-                        <th>Descripción</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <% 
-                            pedidosExistentes = true;  // Marcar que hay pedidos para mostrar
-                        }
-        %>
-            <!-- Agregar cada pedido como una nueva fila -->
-            <tr>
-                <td><%= rs.getInt("id_pedido") %></td>
-                <td><%= rs.getString("Monto") %></td>
-                <td><%= rs.getString("Descripcion") %></td>
-                <td><%= rs.getDate("Fecha") %></td>
-            </tr>
-        <% 
-                    }
-
-                    // Si no se encontraron pedidos, mostrar un mensaje
-                    if (!pedidosExistentes) {
-                        out.println("<p>No se encontraron pedidos para el cliente con cédula: " + cedulaCliente + "</p>");
+            %>
+            
+            <div id="formulario-actualizar">
+                <% if (rs.next()) { %>
+                <form method="POST" action="ActualizarCliente.jsp" enctype="multipart/form-data">
+                    <input type="hidden" name="cedula" value="<%= rs.getString("Cedula") %>">
+                    <div class="form-group">
+                        <label for="nombre1">Nombre 1:</label>
+                        <input type="text" name="nombre1" value="<%= rs.getString("Nombre1") %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre2">Nombre 2:</label>
+                        <input type="text" name="nombre2" value="<%= rs.getString("Nombre2") %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido1">Apellido 1:</label>
+                        <input type="text" name="apellido1" value="<%= rs.getString("Apellido1") %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido2">Apellido 2:</label>
+                        <input type="text" name="apellido2" value="<%= rs.getString("Apellido2") %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo:</label>
+                        <input type="email" name="correo" value="<%= rs.getString("Correo") %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen (Opcional):</label>
+                        <input type="file" name="imagen" accept="image/*">
+                    </div>
+                    <div class="actions-wrapper">
+                        <button type="submit" class="btn-editar">Actualizar</button>
+                    </div>
+                </form>
+                <% } %>
+            </div>
+            
+            <% 
+                } catch (ClassNotFoundException | SQLException e) {
+                    out.println("Error: " + e.getMessage());
+                } finally {
+                    try {
+                        if (rs != null) rs.close();
+                        if (stmt != null) stmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 }
-                if (!clienteEncontrado) {
-                    out.println("<p>No se encontró un cliente con la cédula: " + cedulaCliente + "</p>");
-                }
-            } catch (ClassNotFoundException | SQLException e) {
-                out.println("<p>Error: " + e.getMessage() + "</p>");
-            } finally {
-                try {
-                    if (rs != null) rs.close();
-                    if (stmt != null) stmt.close();
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        %>
+            %>
 
-        </tbody>
-    </table>
-<% } %>
-
-        <div class="actions-wrapper">
-            <button type="button" onclick="window.location.href = 'menu.jsp';" class="btn-exit btn-salir">Salir</button>
+            <div class="actions-wrapper">
+                <button type="button" onclick="window.location.href = 'ConsultaC.jsp';" class="btn-exit btn-salir">Volver</button>
+            </div>
         </div>
     </div>
 </body>
-</html> 
+</html>
