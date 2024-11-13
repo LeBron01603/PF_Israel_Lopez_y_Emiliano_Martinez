@@ -39,7 +39,7 @@
 
             if (cedulaCliente != null && !cedulaCliente.trim().isEmpty()) {
                 // Variables de conexión y declaración de JDBC
-                String URL = "jdbc:mysql://localhost:3306/bd_pf";
+                String URL = "jdbc:mysql://localhost:3306/proyecto_bd";
                 String nombreUsuario = "root";
                 String nombreClave = "Isra1107.";
 
