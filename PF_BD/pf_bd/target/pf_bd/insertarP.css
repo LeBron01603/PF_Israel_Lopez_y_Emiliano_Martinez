@@ -1,4 +1,4 @@
-/* Estilo para el formulario de insertar cliente */
+/* Estilo para el formulario de insertar pedido */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -22,18 +22,8 @@ h2 {
     text-align: center;
 }
 
-.section {
-    margin-bottom: 30px;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 label {
