@@ -13,7 +13,7 @@
                 alert('Debe ingresar una cédula para consultar.');
                 return;
             }
-            
+
             // Realizamos la consulta al backend (mismo archivo insertarP-C.jsp)
             fetch('insertarP-C.jsp?accion=consultarCliente&cedula=' + cedula)
                 .then(response => response.json())  // Esperamos una respuesta en formato JSON
@@ -40,7 +40,6 @@
     <div class="container">
         <h2>Registrar Cliente y Pedido</h2>
         <form action="insertarP-C.jsp" method="post" onsubmit="return validarFormulario()">
-            
             <!-- Sección de Consulta de Cliente -->
             <div class="section">
                 <h3>Consultar Cliente</h3>
@@ -108,7 +107,7 @@
             </div>
         </form>
     </div>
-    
+
     <%
         String accion = request.getParameter("accion");
         String identificacion = request.getParameter("identificacion");
@@ -166,66 +165,6 @@
                 try {
                     if (rsCliente != null) rsCliente.close();
                     if (stmtConsultarCliente != null) stmtConsultarCliente.close();
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if ("registrarCliente".equals(accion)) {
-            try {
-                // Conectar a la base de datos
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection(url, user, password);
-
-                // Registrar cliente
-                String sqlRegistrarCliente = "{CALL RegistrarCliente(?, ?, ?, ?, ?, ?)}";
-                stmtCliente = conn.prepareCall(sqlRegistrarCliente);
-                stmtCliente.setString(1, identificacion);
-                stmtCliente.setString(2, primerNombre);
-                stmtCliente.setString(3, segundoNombre);
-                stmtCliente.setString(4, primerApellido);
-                stmtCliente.setString(5, segundoApellido);
-                stmtCliente.setString(6, email);
-                stmtCliente.executeUpdate();
-
-                out.println("<script>alert('Cliente registrado exitosamente.'); window.location.href='insertarP-C.jsp';</script>");
-            } catch (Exception e) {
-                e.printStackTrace();
-                out.println("<script>alert('Error al registrar el cliente.'); window.location.href='insertarP-C.jsp';</script>");
-            } finally {
-                try {
-                    if (stmtCliente != null) stmtCliente.close();
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if ("registrarPedido".equals(accion)) {
-            try {
-                // Conectar a la base de datos
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection(url, user, password);
-
-                // Registrar pedido
-                String sqlRegistrarPedido = "{CALL insertar_Pedido(?, ?, ?, ?)}";
-                stmtPedido = conn.prepareCall(sqlRegistrarPedido);
-                stmtPedido.setString(1, cedulaPedido);
-                stmtPedido.setDouble(2, monto);
-                stmtPedido.setString(3, descripcion);
-                stmtPedido.setDate(4, fechaPedido);
-                stmtPedido.executeUpdate();
-
-                out.println("<script>alert('Pedido registrado exitosamente.'); window.location.href='menu.jsp';</script>");
-            } catch (Exception e) {
-                e.printStackTrace();
-                out.println("<script>alert('Error al registrar el pedido.'); window.location.href='insertarP-C.jsp';</script>");
-            } finally {
-                try {
-                    if (stmtPedido != null) stmtPedido.close();
                     if (conn != null) conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
