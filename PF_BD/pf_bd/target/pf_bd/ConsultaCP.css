@@ -13,6 +13,10 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-image: url('imagenes/tu-imagen.jpg'); /* Reemplaza 'tu-imagen.jpg' con la ruta de tu imagen */
+    background-size: cover; /* La imagen cubrirá toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen se mantiene fija cuando se hace scroll */
 }
 
 /* Main container */
@@ -24,6 +28,10 @@ body {
     width: 80%;
     max-width: 900px;
     overflow: hidden;
+    background-image: url('muestra general.jpg'); /* Reemplaza 'tu-imagen.jpg' con la ruta de tu imagen */
+    background-size: cover; /* La imagen cubrirá el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* La imagen no se repetirá */
 }
 
 .title-icon-wrapper {

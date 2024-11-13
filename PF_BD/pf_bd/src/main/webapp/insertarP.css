@@ -3,8 +3,13 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
+    background-image: url('insertar cliente.jpg'); /* Agrega la imagen como fondo */
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen mientras haces scroll */
+    height: 100vh; /* Asegura que la imagen cubra toda la pantalla */
 }
 
 /* Contenedor principal del formulario */
@@ -13,38 +18,39 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-image: url('insertar cliente.jpg'); /* Agrega la imagen como fondo */
-    background-size: cover; /* Hace que la imagen cubra todo el contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    backdrop-filter: blur(5px); /* Aplica un desenfoque al fondo para mayor contraste */
 }
 
-/* Resto de estilos no cambia */
+/* Título principal */
 h2 {
     font-size: 22px;
     margin-bottom: 20px;
     color: #333;
 }
 
+/* Sección de Datos del Pedido */
 .section {
     margin-bottom: 20px;
 }
 
+/* Título de la sección */
 h3 {
     font-size: 18px;
     color: #333;
     margin-bottom: 15px;
 }
 
+/* Estilo de la cuadrícula para los campos */
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
+/* Estilo de los grupos de formularios */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -77,6 +83,7 @@ input:focus {
     outline: none;
 }
 
+/* Botones */
 button {
     padding: 12px 25px;
     font-size: 16px;
@@ -89,6 +96,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
+/* Botón Submit */
 button[type="submit"] {
     background-color: #4CAF50;
     color: white;
@@ -104,6 +112,7 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 
+/* Botón Volver */
 button[type="button"] {
     background-color: #f44336;
     color: white;
@@ -113,12 +122,14 @@ button[type="button"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: auto; /* Mueve el botón Volver al lado derecho */
 }
 
 button[type="button"]:hover {
     background-color: #e53935;
 }
 
+/* Estilos para los mensajes de validación */
 .alert {
     background-color: #f44336;
     color: white;

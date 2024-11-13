@@ -5,6 +5,10 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    background-image: url('insertar cliente.jpg'); /* Cambia 'tu-imagen.jpg' con el nombre de tu imagen */
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen mientras haces scroll */
 }
 
 /* Contenedor principal del formulario */
@@ -16,6 +20,10 @@ body {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-image: url('imagenes/tu-imagen.jpg'); /* Cambia 'tu-imagen.jpg' con el nombre de tu imagen */
+    background-size: cover; /* Asegura que la imagen cubra el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
 /* Título principal */
