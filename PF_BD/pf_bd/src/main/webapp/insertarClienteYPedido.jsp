@@ -24,13 +24,13 @@
                     var respuesta = xhr.responseText.trim();
                     if (respuesta === "existe") {
                         alert("Cliente encontrado.");
-                        document.getElementById('montoPedido').disabled = false;  // Habilitar campo de monto del pedido
-                        document.getElementById('descripcionPedido').disabled = false;  // Habilitar campo de descripción del pedido
-                        document.getElementById('fechaPedido').disabled = false;  // Habilitar fecha
-                        document.getElementById('registrarPedido').disabled = false;  // Habilitar botón de registrar pedido
+                        document.getElementById('montoPedido').disabled = false;
+                        document.getElementById('descripcionPedido').disabled = false;
+                        document.getElementById('fechaPedido').disabled = false;
+                        document.getElementById('registrarPedido').disabled = false;
                     } else {
                         alert("Cliente no encontrado. Registrando cliente...");
-                        document.forms[0].submit();  // Enviar formulario para registrar cliente
+                        document.forms[0].submit();
                     }
                 }
             };
@@ -71,7 +71,6 @@
                 <button type="button" onclick="consultarCliente()">Consultar</button>
             </div>
 
-            <!-- Si el cliente existe, habilitar los campos de pedido -->
             <div class="section" id="pedidoSection" style="display:none;">
                 <h3>Datos del Pedido</h3>
                 <div class="form-group">
@@ -96,24 +95,21 @@
             String cedula = request.getParameter("cedula");
             double monto = Double.parseDouble(request.getParameter("montoPedido"));
             String descripcion = request.getParameter("descripcionPedido");
-            // Cambiado para usar java.sql.Date
             java.sql.Date fechaPedido = java.sql.Date.valueOf(request.getParameter("fechaPedido"));
 
             String url = "jdbc:mysql://localhost:3306/bd_pf";
             String user = "root";
             String password = "Isra1107.";
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
-                // Registrar Pedido
-                String sqlPedido = "INSERT INTO pedidos (cedula_cliente, monto, descripcion, fecha_pedido) VALUES (?, ?, ?, ?)";
+                // Llamada al procedimiento almacenado para insertar pedido
+                String sqlPedido = "{call insertarPedido(?, ?, ?, ?)}";
                 try (PreparedStatement stmt = conn.prepareStatement(sqlPedido)) {
                     stmt.setString(1, cedula);
                     stmt.setDouble(2, monto);
                     stmt.setString(3, descripcion);
-                    stmt.setDate(4, fechaPedido);  // Asegúrate de usar java.sql.Date aquí
-                    int rows = stmt.executeUpdate();
-                    if (rows > 0) {
-                        out.println("<script>alert('Pedido registrado exitosamente');</script>");
-                    }
+                    stmt.setDate(4, fechaPedido);
+                    stmt.executeUpdate();
+                    out.println("<script>alert('Pedido registrado exitosamente');</script>");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
