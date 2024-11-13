@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('insertar2.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 20px;
+}
+
+h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="date"] {
+    width: calc(100% - 16px);
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #a2a0a0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="date"]:focus {
+    border-color: rgb(107, 255, 149);
+    outline: none;
+    box-shadow: 0 0 8px rgba(18, 231, 117, 0.8);
+}
+
+button {
+    display: inline-block;
+    width: calc(50% - 10px); /* 50% menos el margen entre los botones */
+    padding: 10px;
+    border: none;
+    background-color: #6cb5ff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #4c8bff;
+}
+
+button[type="button"] {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+button[type="button"]:hover {
+    background-color: #e2e2e2;
+}
+
+/* Contenedor de los botones alineado horizontalmente */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre los botones */
+    margin-top: 20px;
+    text-align: center;
+}
+
