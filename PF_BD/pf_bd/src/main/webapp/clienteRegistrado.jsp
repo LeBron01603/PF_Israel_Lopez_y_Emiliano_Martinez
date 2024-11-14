@@ -57,9 +57,10 @@
 </head>
 <body>
     <div class="container">
-        <!-- Apartado para la imagen -->
-        <div class="validacion.jpg">
-            <img src="https://via.placeholder.com/400x200?text=Cliente+Registrado" alt="Cliente Registrado">
+        <!-- Apartado para la imagen local -->
+        <div class="image-container">
+            <!-- Asegúrate de que la ruta sea correcta, en este caso la imagen debe estar en la carpeta "imagenes" -->
+            <img src="validacion.jpg" alt="Cliente Registrado">
         </div>
 
         <h2>Cliente Registrado Exitosamente</h2>
