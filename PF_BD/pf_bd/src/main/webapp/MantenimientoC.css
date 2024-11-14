@@ -11,39 +11,37 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('mante.jpg') no-repeat center center fixed;
+    background: url('mensaje.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
 /* Ventana principal de la aplicación */
 .ventana {
     width: 900px;
-    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     color: #fff;
     border-radius: 15px;
     padding: 30px 40px;
-    margin-top: 50px; /* Separar un poco de la parte superior */
+    margin-top: 50px;
 }
 
-/* Título principal */
+/* Título e icono */
 .title-icon-wrapper {
     text-align: center;
 }
 
-.Mantenimiento h2, .listado h2 {
-    font-size: 28px; /* Tamaño común para el título */
-    text-align: center;
-    margin-top: 0; /* Mover el título hacia arriba */
-    color: #fff; /* Color blanco para el texto */
+.title-icon-wrapper h2 {
+    font-size: 28px;
+    color: #fff;
 }
 
-.Mantenimiento .icono-titulo {
-    font-size: 36px; /* Tamaño más grande para el icono */
-    margin-top: 10px; /* Espacio entre el título y el icono */
-    text-align: center;
+.icono-titulo i {
+    font-size: 36px;
+    color: #fff;
+    margin-top: 10px;
 }
 
 /* Línea divisoria */
@@ -53,123 +51,92 @@ body {
     border-top: 1px solid #ccc;
 }
 
-/* Estilo del formulario */
+/* Formulario */
 .Mantenimiento form {
     display: grid;
     gap: 15px;
     max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco trasparente */
+    border-radius: 10px;
+    padding: 20px; /* Espaciado interno */
+    color: #000;    /* Color de la letra negro */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
 }
 
-.Mantenimiento label {
-    color: #f7f5f5; /* Color más suave para los labels */
-    margin-bottom: 5px; /* Espacio debajo del label */
-    font-size: 16px; /* Tamaño de fuente adecuado */
+label {
+    color: #000;    /* Color negro para el texto de las etiquetas */
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    margin-bottom: 15px; /* Espaciado entre las filas */
 }
 
-.form-row > div {
-    width: 100%;
-}
-
-/* Estilo de los inputs */
 .Mantenimiento input,
 .Mantenimiento select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
-    font-size: 16px; /* Tamaño de fuente adecuado */
+    font-size: 16px;
+    background-color: #fff; /* Fondo blanco para los inputs */
+    color: #000; /* Texto negro en los campos de entrada */
 }
 
-/* Estilo específico para los campos de Identificación */
-.identificacion-wrapper {
-    background-color: #f0f0f0;
-    padding: 5px;
-    border-radius: 3px;
-}
-
+/* Campos no editables (Cédula, ID Pedido) */
 .identificacion-wrapper input {
     border: none;
     background: transparent;
     font-size: inherit;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 5px;
-    color: #333;
+    color: #000;  /* Aseguramos que el texto sea negro */
 }
 
-/* Estilo de los botones */
-.Mantenimiento .form-actions {
+/* Botones (Actualizar, Salir) */
+.form-actions {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.Mantenimiento .btn {
+.btn,
+.btn-salir {
     padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+/* Botón de actualizar */
+.btn {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
     margin-right: 10px;
-    transition: background-color 0.3s ease;
 }
 
-.Mantenimiento .btn:hover {
+.btn:hover {
     background-color: #45a049;
 }
 
-.Mantenimiento .btn-salir {
-    padding: 10px 25px;
+/* Botón de salir */
+.btn-salir {
     background-color: #ff4d4d;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
     margin-left: 10px;
-    transition: background-color 0.3s ease;
 }
 
-.Mantenimiento .btn-salir:hover {
+.btn-salir:hover {
     background-color: #e03e3e;
-}
-
-/* Estilo de los campos dentro del formulario */
-.Mantenimiento .form-row .campo {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Ajustar el tamaño de los campos en caso de necesitar */
-.Mantenimiento .form-row .campo input {
-    height: 40px; /* Ajuste de tamaño para los campos de texto */
-}
-
-/* Asegurar que los campos estén alineados correctamente */
-.Mantenimiento .form-row .Identificación .identificacion-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 28px;
 }
 
 /* Respuesta visual al poner el foco en los campos */
-.Mantenimiento input:focus {
+input:focus {
     border-color: #4CAF50;
     outline: none;
-}
-
-/* Estilo para los botones dentro del formulario */
-.Mantenimiento .btn-salir {
-    background-color: #ff4d4d;
-}
-
-.Mantenimiento .btn-salir:hover {
-    background-color: #e03e3e;
 }
