@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*, javax.servlet.*, javax.servlet.http.*" %>
 
@@ -6,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Cliente</title>
+    <title>Listado de Clientes</title>
     <link rel="stylesheet" href="ConsultaC.css">
     <script>
         function confirmarEliminacion(form) {
@@ -23,7 +24,7 @@
     <div class="ventana">
         <div class="Listado">
             <div class="title-icon-wrapper">
-                <h2>Actualizar Cliente</h2>
+                <h2>Listado Cliente</h2>
             </div>
             <hr class="title-divider">
 
@@ -35,7 +36,7 @@
                 String nombreClave = "Isra1107.";
 
                 Connection conn = null;
-                CallableStatement stmt = null; // Usamos CallableStatement
+                CallableStatement stmt = null;
                 ResultSet rs = null;
 
                 try {
@@ -43,51 +44,62 @@
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     conn = DriverManager.getConnection(URL, nombreUsuario, nombreClave);
 
-                    // Llamar al procedimiento almacenado 'obtenerCliente'
-                    String cedula = request.getParameter("idCliente");
-                    String sql = "{CALL obtenerCliente(?)}";  // Procedimiento almacenado con parámetro
+                    // Llamar al procedimiento almacenado 'obtenerClientes'
+                    String sql = "{CALL obtenerClientes()}";
                     stmt = conn.prepareCall(sql);
-                    stmt.setString(1, cedula);  // Pasamos el parámetro de la cédula
-                    rs = stmt.executeQuery();  // Ejecutar el procedimiento almacenado y obtener el ResultSet
+                    rs = stmt.executeQuery();
             %>
+            <% 
+            // Verificar si existe el parámetro 'mensaje' en la URL
+            String mensaje = request.getParameter("mensaje");
+            if (mensaje != null && !mensaje.isEmpty()) {
+        %>
+            <!-- Mostrar el mensaje -->
+            <div class="mensaje">
+                <p><%= mensaje %></p>
+            </div>
+        <% } %>
 
-            <div id="formulario-actualizar">
-                <% if (rs.next()) { %>
-                <form method="POST" action="ActualizarCliente.jsp" enctype="multipart/form-data">
-                    <input type="hidden" name="cedula" value="<%= rs.getString("Cedula") %>">
-                    <div class="form-group">
-                        <label for="nombre1">Nombre 1:</label>
-                        <input type="text" name="nombre1" value="<%= rs.getString("Nombre1") %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre2">Nombre 2:</label>
-                        <input type="text" name="nombre2" value="<%= rs.getString("Nombre2") %>">
-                    </div>
-                    <div class="form-group">
-                        <label for="apellido1">Apellido 1:</label>
-                        <input type="text" name="apellido1" value="<%= rs.getString("Apellido1") %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="apellido2">Apellido 2:</label>
-                        <input type="text" name="apellido2" value="<%= rs.getString("Apellido2") %>">
-                    </div>
-                    <div class="form-group">
-                        <label for="correo">Correo:</label>
-                        <input type="email" name="correo" value="<%= rs.getString("Correo") %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="imagen">Imagen (Opcional):</label>
-                        <input type="file" name="imagen" accept="image/*">
-                    </div>
-                    <div class="actions-wrapper">
-                        <button type="submit" class="btn-editar">Actualizar</button>
-                    </div>
-                </form>
-                <% } else { %>
-                    <p>No se encontró el cliente.</p>
-                <% } %>
+            <div id="resultado-listado">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th style="min-width: 100px;">Cédula</th>
+                            <th>Nombre 1</th>
+                            <th>Nombre 2</th>
+                            <th>Apellido 1</th>
+                            <th>Apellido 2</th>
+                            <th>Correo</th> 
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% while (rs.next()) { %>
+                            <tr>
+                                <td><%= rs.getString("Cedula") %></td>
+                                <td><%= rs.getString("Nombre1") %></td>
+                                <td><%= rs.getString("Nombre2") %></td>
+                                <td><%= rs.getString("Apellido1") %></td>
+                                <td><%= rs.getString("Apellido2") %></td>
+                                <td><%= rs.getString("Correo") %></td> 
+                                <td>
+                                    <form method="get" action="MantenimientoC.jsp">
+                                        <input type="hidden" name="idCliente" value="<%= rs.getString("Cedula") %>">
+                                        <button type="submit" class="btn-editar">Editar</button>
+                                    </form>
+                                    <form method="post" action="eliminarC.jsp" onsubmit="return confirmarEliminacion(this);">
+                                        <input type="hidden" name="cedula" value="<%= rs.getString("Cedula") %>">
+                                        <button type="submit" class="btn-eliminar">Eliminar</button>
+                                    </form>
+                                                                    
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
 
+            <%-- Manejo de excepciones y cierre de conexiones --%>
             <% 
                 } catch (ClassNotFoundException | SQLException e) {
                     out.println("Error: " + e.getMessage());
@@ -103,9 +115,10 @@
             %>
 
             <div class="actions-wrapper">
-                <button type="button" onclick="window.location.href = 'ConsultaC.jsp';" class="btn-exit btn-salir">Volver</button>
+                <button type="button" onclick="window.location.href = 'menu.jsp';" class="btn-exit btn-salir">Salir</button>
             </div>
+            
         </div>
     </div>
 </body>
-</html>
+</html> 
