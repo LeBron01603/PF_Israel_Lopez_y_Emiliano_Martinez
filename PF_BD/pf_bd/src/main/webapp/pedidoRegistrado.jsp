@@ -48,8 +48,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>Cliente Registrado Exitosamente</h2>
-        <p>El cliente ha sido registrado correctamente en la base de datos.</p>
+        <h2>Pedido Registraado</h2>
+        <p>El pedido ha sido registrado correctamente en la base de datos.</p>
         <button onclick="window.location.href='menu.jsp'">Aceptar</button>
     </div>
 </body>

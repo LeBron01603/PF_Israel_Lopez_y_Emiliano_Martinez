@@ -33,8 +33,8 @@
             // Ejecutar el procedimiento almacenado
             stmtPedido.executeUpdate();
 
-            // Mensaje de éxito
-            out.println("<script>alert('Pedido registrado exitosamente'); window.location.href='menu.jsp';</script>");
+            // Redirigir a la página de confirmación de éxito
+            response.sendRedirect("pedidoRegistrado.jsp");
             
         } catch (SQLException e) {
             // Manejo de excepciones SQL
