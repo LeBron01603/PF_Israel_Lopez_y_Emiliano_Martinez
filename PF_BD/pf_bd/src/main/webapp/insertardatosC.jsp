@@ -45,8 +45,8 @@
             stmtCliente.setString(6, email);           
             stmtCliente.executeUpdate();
 
-            // Mensaje de éxito
-            out.println("<script>alert('Cliente registrado exitosamente.'); window.location.href='menu.jsp';</script>");
+            // Redirigir a la página de confirmación de éxito
+            response.sendRedirect("clienteRegistrado.jsp");
         }
 
     } catch (SQLException e) {
