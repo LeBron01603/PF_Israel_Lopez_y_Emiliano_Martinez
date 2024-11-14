@@ -64,7 +64,7 @@ body {
 }
 
 label {
-    color: #000;    /* Color negro para el texto de las etiquetas */
+    color: #fbfafa;    /* Color negro para el texto de las etiquetas */
     font-size: 16px;
     margin-bottom: 5px;
 }
