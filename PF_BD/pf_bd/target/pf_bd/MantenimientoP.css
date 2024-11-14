@@ -11,18 +11,18 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('pedido_bg.jpg') no-repeat center center fixed;
+    background: url('mensaje.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
 /* Ventana principal de la aplicación */
 .ventana {
     width: 900px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(50, 50, 50, 0.8); /* Fondo oscuro claro (gris suave) con opacidad */
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
+    color: #fff; /* Texto blanco */
     border-radius: 15px;
     padding: 30px 40px;
     margin-top: 50px;
@@ -56,10 +56,15 @@ body {
     display: grid;
     gap: 15px;
     max-width: 100%;
+    background-color: rgba(50, 50, 50, 0.9); /* Fondo oscuro claro con opacidad */
+    border-radius: 10px;
+    padding: 20px; /* Espaciado interno */
+    color: #fff;    /* Letra blanca */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
 }
 
 label {
-    color: #f7f5f5;
+    color: #fff;    /* Color blanco para las etiquetas */
     font-size: 16px;
     margin-bottom: 5px;
 }
@@ -68,6 +73,7 @@ label {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    margin-bottom: 15px; /* Espaciado entre las filas */
 }
 
 .Mantenimiento input,
@@ -77,46 +83,52 @@ label {
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
+    background-color: #333; /* Fondo más oscuro para los inputs */
+    color: #fff; /* Texto blanco dentro de los inputs */
 }
 
+/* Campos no editables (Cédula, ID Pedido) */
 .identificacion-wrapper input {
     border: none;
     background: transparent;
     font-size: inherit;
-    color: #333;
+    color: #fff;  /* Aseguramos que el texto sea blanco */
 }
 
-/* Botones */
+/* Botones (Actualizar, Salir) */
 .form-actions {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.btn {
+.btn,
+.btn-salir {
     padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+/* Botón de actualizar */
+.btn {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
     margin-right: 10px;
-    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
     background-color: #45a049;
 }
 
+/* Botón de salir */
 .btn-salir {
-    padding: 10px 25px;
     background-color: #ff4d4d;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
     margin-left: 10px;
-    transition: background-color 0.3s ease;
 }
 
 .btn-salir:hover {
