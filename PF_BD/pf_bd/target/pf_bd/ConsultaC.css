@@ -139,6 +139,15 @@ body {
     margin-top: 20px;
 }
 
+/* Contenedor del formulario de actualización */
+#formulario-actualizar {
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
+}
+
 /* Responsividad */
 @media (max-width: 768px) {
     .user-table th, .user-table td {
@@ -159,4 +168,4 @@ body {
     .Listados h2 {
         font-size: 24px; /* Reducir tamaño del título */
     }
-} 
+}
