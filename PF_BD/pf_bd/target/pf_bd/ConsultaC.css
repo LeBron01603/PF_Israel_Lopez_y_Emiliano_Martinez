@@ -29,15 +29,6 @@ body {
     overflow-x: hidden; /* Evita desplazamiento horizontal */
 }
 
-/* Contenedor del formulario de actualización */
-#formulario-actualizar {
-    background-color: rgba(0, 0, 0, 0.8);  /* Fondo oscuro para el formulario */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
-}
-
 /* Título principal */
 .title-icon-wrapper {
     text-align: center;
@@ -168,4 +159,4 @@ body {
     .Listados h2 {
         font-size: 24px; /* Reducir tamaño del título */
     }
-}
+} 
