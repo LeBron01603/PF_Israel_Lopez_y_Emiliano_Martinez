@@ -58,7 +58,7 @@
 <body>
     <div class="container">
         <!-- Apartado para la imagen -->
-        <div class="image-container">
+        <div class="validacion.jpg">
             <img src="https://via.placeholder.com/400x200?text=Cliente+Registrado" alt="Cliente Registrado">
         </div>
 
