@@ -89,8 +89,8 @@ body {
 /* Contenedor para los botones Insertar Cliente, Insertar Pedido, etc. */
 .button-container {
     display: grid;  /* Usamos grid para el diseño de las columnas y filas */
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas de tamaño igual */
-    grid-template-rows: repeat(2, 1fr); /* 2 filas de tamaño igual */
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas para los primeros botones */
+    grid-template-rows: repeat(3, 1fr); /* 3 filas en total */
     gap: 15px; /* Espacio entre los botones */
     width: 100%;
     margin-bottom: 20px;
@@ -101,17 +101,17 @@ body {
 }
 
 /* Estilo para los botones dentro del contenedor de botones */
-.insertar button,
+.insertar button {
+    grid-column: span 2;  /* Ocupa las dos primeras columnas */
+}
+
 .mantenimiento button,
-.Consulta button,
-.salir button {
+.Consulta button {
     width: 100%; /* Los botones ocupan todo el espacio disponible */
 }
 
-/* Efecto hover de los botones: cambiar a azul */
-.Menu button:hover {
-    background-color: #007bff; /* Color azul */
-    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba */
+.Consulta button {
+    grid-column: span 2;  /* El botón de consulta general ocupa todo el ancho */
 }
 
 /* Estilo para el botón "Salir" */
@@ -161,7 +161,7 @@ body {
 
     .button-container {
         grid-template-columns: 1fr 1fr;  /* 2 columnas en dispositivos móviles */
-        grid-template-rows: repeat(3, 1fr); /* 3 filas en dispositivos móviles */
+        grid-template-rows: repeat(4, 1fr); /* 4 filas en dispositivos móviles */
         gap: 10px;
     }
 

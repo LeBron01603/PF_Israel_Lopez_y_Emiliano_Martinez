@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Pedidos</title>
     <link rel="stylesheet" href="ConsultaP.css">
+    <!-- Incluir Font Awesome para los iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script>
         function confirmarEliminacion(form) {
             if (confirm("¿Está seguro de que desea ELIMINAR este PEDIDO?")) {
@@ -84,12 +86,16 @@
                                     <!-- Formulario para editar el pedido -->
                                     <form method="get" action="MantenimientoP.jsp">
                                         <input type="hidden" name="idPedido" value="<%= rs.getInt("id_pedido") %>">
-                                        <button type="submit" class="btn-editar">Editar</button>
+                                        <button type="submit" class="btn-editar">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </button>
                                     </form>
                                     <!-- Formulario para eliminar el pedido -->
                                     <form method="post" action="eliminarP.jsp" onsubmit="return confirmarEliminacion(this);">
                                         <input type="hidden" name="idPedido" value="<%= rs.getInt("id_pedido") %>">
-                                        <button type="submit" class="btn-eliminar">Eliminar</button>
+                                        <button type="submit" class="btn-eliminar">
+                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

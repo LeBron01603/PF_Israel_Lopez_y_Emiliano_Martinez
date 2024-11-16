@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Cliente</title>
     <link rel="stylesheet" href="insertarCliente.css">
+    <!-- Incluir Font Awesome para los iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -44,8 +46,15 @@
             </div>
 
             <div class="button-container">
-                <button type="submit">Registrar Cliente</button>
-                <button type="button" onclick="window.location.href='menu.jsp';">Volver</button>
+                <!-- Botón de Registrar Cliente con ícono -->
+                <button type="submit">
+                    <i class="fas fa-user-plus"></i> Registrar Cliente
+                </button>
+
+                <!-- Botón Volver con ícono -->
+                <button type="button" onclick="window.location.href='menu.jsp';">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
             </div>
         </form>
     </div>

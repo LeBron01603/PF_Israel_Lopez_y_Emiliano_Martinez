@@ -11,30 +11,18 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-<<<<<<< HEAD
-    background: url('pedido_bg.jpg') no-repeat center center fixed;
-=======
     background: url('mensaje.jpg') no-repeat center center fixed;
->>>>>>> Diseño
     background-size: cover;
 }
 
 /* Ventana principal de la aplicación */
 .ventana {
     width: 900px;
-<<<<<<< HEAD
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
-=======
     background: rgba(50, 50, 50, 0.8); /* Fondo oscuro claro (gris suave) con opacidad */
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     color: #fff; /* Texto blanco */
->>>>>>> Diseño
     border-radius: 15px;
     padding: 30px 40px;
     margin-top: 50px;
@@ -68,12 +56,6 @@ body {
     display: grid;
     gap: 15px;
     max-width: 100%;
-<<<<<<< HEAD
-}
-
-label {
-    color: #f7f5f5;
-=======
     background-color: rgba(50, 50, 50, 0.9); /* Fondo oscuro claro con opacidad */
     border-radius: 10px;
     padding: 20px; /* Espaciado interno */
@@ -90,20 +72,10 @@ label {
 
 label {
     color: #fff;    /* Color blanco para las etiquetas */
->>>>>>> Diseño
     font-size: 16px;
     margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-=======
->>>>>>> Diseño
 .Mantenimiento input,
 .Mantenimiento select {
     padding: 10px;
@@ -111,48 +83,25 @@ label {
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
-<<<<<<< HEAD
-}
-
-=======
     background-color: #333; /* Fondo más oscuro para los inputs */
     color: #fff; /* Texto blanco dentro de los inputs */
 }
 
 /* Campos no editables (Cédula) */
->>>>>>> Diseño
 .identificacion-wrapper input {
     border: none;
     background: transparent;
     font-size: inherit;
-<<<<<<< HEAD
-    color: #333;
-}
-
-/* Botones */
-=======
     color: #fff;  /* Aseguramos que el texto sea blanco */
 }
 
 /* Botones (Actualizar, Salir) */
->>>>>>> Diseño
 .form-actions {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-<<<<<<< HEAD
-.btn {
-    padding: 10px 25px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s ease;
-=======
 .btn,
 .btn-salir {
     padding: 10px 25px;
@@ -168,31 +117,18 @@ label {
     color: white;
     border: none;
     margin-right: 10px;
->>>>>>> Diseño
 }
 
 .btn:hover {
     background-color: #45a049;
 }
 
-<<<<<<< HEAD
-.btn-salir {
-    padding: 10px 25px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
-=======
 /* Botón de salir */
 .btn-salir {
     background-color: #ff4d4d;
     color: white;
     border: none;
     margin-left: 10px;
->>>>>>> Diseño
 }
 
 .btn-salir:hover {

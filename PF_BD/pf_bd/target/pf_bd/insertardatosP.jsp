@@ -10,7 +10,7 @@
         // Variables de conexión
         String url = "jdbc:mysql://localhost:3306/bd_pf";
         String user = "root";
-        String password = "Isra1107.";
+        String password = "Emiliano01603";
         
         Connection conn = null;
         CallableStatement stmtPedido = null;

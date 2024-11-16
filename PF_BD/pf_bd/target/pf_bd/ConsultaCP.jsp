@@ -42,7 +42,7 @@
                 // Variables de conexión y declaración de JDBC
                 String URL = "jdbc:mysql://localhost:3306/bd_pf";
                 String nombreUsuario = "root";
-                String nombreClave = "Isra1107.";
+                String nombreClave = "Emiliano01603";
 
                 Connection conn = null;
                 CallableStatement stmt = null;

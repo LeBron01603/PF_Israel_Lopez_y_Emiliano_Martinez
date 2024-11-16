@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Clientes</title>
     <link rel="stylesheet" href="ConsultaC.css">
+    <!-- Incluir Font Awesome para los iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script>
         function confirmarEliminacion(form) {
             if (confirm("¿Está seguro de que desea ELIMINAR este CLIENTE con su PEDIDO?")) {
@@ -82,13 +84,19 @@
                                 <td><%= rs.getString("Apellido2") %></td>
                                 <td><%= rs.getString("Correo") %></td> 
                                 <td>
+                                    <!-- Formulario para editar el cliente -->
                                     <form method="get" action="MantenimientoC.jsp">
                                         <input type="hidden" name="idCliente" value="<%= rs.getString("Cedula") %>">
-                                        <button type="submit" class="btn-editar">Editar</button>
+                                        <button type="submit" class="btn-editar">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </button>
                                     </form>
+                                    <!-- Formulario para eliminar el cliente -->
                                     <form method="post" action="eliminarC.jsp" onsubmit="return confirmarEliminacion(this);">
                                         <input type="hidden" name="cedula" value="<%= rs.getString("Cedula") %>">
-                                        <button type="submit" class="btn-eliminar">Eliminar</button>
+                                        <button type="submit" class="btn-eliminar">
+                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                        </button>
                                     </form>
                                                                     
                                 </td>
