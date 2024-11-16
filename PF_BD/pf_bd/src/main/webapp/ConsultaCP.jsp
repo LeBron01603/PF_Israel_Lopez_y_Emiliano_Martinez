@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.*, javax.servlet.*, javax.servlet.http.*" %>
+<%@ page import="java.sql.*" %> <!-- Importa las clases de JDBC necesarias -->
+<%@ page import="javax.servlet.*, javax.servlet.http.*" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -48,7 +49,7 @@
                 ResultSet rs = null;
 
                 try {
-                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Class.forName("com.mysql.cj.jdbc.Driver"); // Asegúrate de tener el JAR de MySQL en el classpath
                     conn = DriverManager.getConnection(URL, nombreUsuario, nombreClave);
 
                     String sql = "{CALL Consultar_PedidoCliente(?)}"; // Procedimiento almacenado
