@@ -12,7 +12,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+<<<<<<< HEAD
     background: url('mante.jpg') no-repeat center center/cover;
+=======
+    background: url('consulCliente.jpg') no-repeat center center/cover;
+>>>>>>> Diseño
     color: #fff;
 }
 

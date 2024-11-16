@@ -3,8 +3,13 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
+    background-image: url('insertar cliente.jpg'); /* Agrega la imagen como fondo */
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen mientras haces scroll */
+    height: 100vh; /* Asegura que la imagen cubra toda la pantalla */
 }
 
 /* Contenedor principal del formulario */
@@ -13,16 +18,18 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con algo de transparencia */
+    color: #fff; /* Cambiar el color del texto a blanco */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); /* Aplica un desenfoque al fondo para mayor contraste */
 }
 
 /* Título principal */
 h2 {
     font-size: 22px;
     margin-bottom: 20px;
-    color: #333;
+    color: #fff; /* Título blanco */
 }
 
 /* Sección de Datos del Pedido */
@@ -33,7 +40,7 @@ h2 {
 /* Título de la sección */
 h3 {
     font-size: 18px;
-    color: #333;
+    color: #fff; /* Títulos de sección blancos */
     margin-bottom: 15px;
 }
 
@@ -54,7 +61,7 @@ h3 {
 label {
     font-size: 16px;
     margin-bottom: 5px;
-    color: #333;
+    color: #fff; /* Etiquetas de los campos en blanco */
 }
 
 input {
@@ -64,6 +71,8 @@ input {
     border-radius: 5px;
     width: 100%;
     box-sizing: border-box;
+    background-color: #333; /* Fondo oscuro para los inputs */
+    color: #fff; /* Texto blanco en los campos de entrada */
 }
 
 input[type="number"],
@@ -72,7 +81,6 @@ input[type="date"] {
     height: 40px;
 }
 
-/* Estilo cuando el input está enfocado */
 input:focus {
     border-color: #4CAF50;
     outline: none;
@@ -117,6 +125,7 @@ button[type="button"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: auto; /* Mueve el botón Volver al lado derecho */
 }
 
 button[type="button"]:hover {
@@ -131,5 +140,5 @@ button[type="button"]:hover {
     margin-top: 10px;
     border-radius: 5px;
     font-size: 16px;
-    display: none; /* Inicialmente oculto */
+    display: none;
 }

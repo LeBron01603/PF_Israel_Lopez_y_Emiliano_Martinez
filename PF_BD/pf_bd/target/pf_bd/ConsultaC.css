@@ -12,7 +12,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+<<<<<<< HEAD
     background: url('mante.jpg') no-repeat center center/cover;
+=======
+    background: url('consulCliente.jpg') no-repeat center center/cover;
+>>>>>>> Diseño
     color: #fff;
 }
 
@@ -139,6 +143,18 @@ body {
     margin-top: 20px;
 }
 
+<<<<<<< HEAD
+=======
+/* Contenedor del formulario de actualización */
+#formulario-actualizar {
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
+}
+
+>>>>>>> Diseño
 /* Responsividad */
 @media (max-width: 768px) {
     .user-table th, .user-table td {

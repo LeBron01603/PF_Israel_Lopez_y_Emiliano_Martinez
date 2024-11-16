@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('menu2.jpg') no-repeat center center;
+    background: url('menu prin.jpg') no-repeat center center;
     background-size: cover;
 }
 
@@ -72,12 +72,13 @@ body {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Efecto hover para los botones */
 .Menu button:hover {
     background-color: #45a049;
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba */
 }
 
 /* Espacio entre los íconos y el texto de los botones */
@@ -85,24 +86,32 @@ body {
     margin-right: 8px;
 }
 
-/* Contenedor para los botones Insertar Cliente y Insertar Pedido */
+/* Contenedor para los botones Insertar Cliente, Insertar Pedido, etc. */
 .button-container {
-    display: flex;
-    justify-content: space-between; /* Los botones estarán uno al lado del otro */
+    display: grid;  /* Usamos grid para el diseño de las columnas y filas */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de tamaño igual */
+    grid-template-rows: repeat(2, 1fr); /* 2 filas de tamaño igual */
+    gap: 15px; /* Espacio entre los botones */
     width: 100%;
     margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro claro similar al del título */
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px); /* Desenfoque en el fondo */
 }
 
-/* Estilo para los botones dentro del contenedor de insertar */
-.insertar button {
-    flex-basis: 48%; /* 48% de ancho para los botones */
-    margin-bottom: 0; /* Eliminar el margen inferior */
-}
-
-/* Estilo para los botones de mantenimiento y consultas */
+/* Estilo para los botones dentro del contenedor de botones */
+.insertar button,
 .mantenimiento button,
-.Consulta button {
-    width: 100%;
+.Consulta button,
+.salir button {
+    width: 100%; /* Los botones ocupan todo el espacio disponible */
+}
+
+/* Efecto hover de los botones: cambiar a azul */
+.Menu button:hover {
+    background-color: #007bff; /* Color azul */
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba */
 }
 
 /* Estilo para el botón "Salir" */
@@ -139,7 +148,6 @@ body {
     font-size: 16px; /* Reducción del tamaño del icono */
 }
 
-
 /* Diseño para la versión de tablet o móviles */
 @media (max-width: 600px) {
     .Menu {
@@ -152,12 +160,15 @@ body {
     }
 
     .button-container {
-        flex-direction: column; /* Los botones se apilan verticalmente */
-        gap: 10px; /* Espaciado entre los botones */
+        grid-template-columns: 1fr 1fr;  /* 2 columnas en dispositivos móviles */
+        grid-template-rows: repeat(3, 1fr); /* 3 filas en dispositivos móviles */
+        gap: 10px;
     }
 
-    .insertar button {
-        flex-basis: 100%; /* Los botones ocuparán todo el ancho */
+    .insertar button,
+    .mantenimiento button,
+    .Consulta button {
+        width: 100%;
     }
 
     .Menu button {

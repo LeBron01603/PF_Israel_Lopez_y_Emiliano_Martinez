@@ -10,7 +10,7 @@
         // Variables de conexión
         String url = "jdbc:mysql://localhost:3306/bd_pf";
         String user = "root";
-        String password = "Emiliano01603";
+        String password = "Isra1107.";
         
         Connection conn = null;
         CallableStatement stmtPedido = null;
@@ -33,8 +33,8 @@
             // Ejecutar el procedimiento almacenado
             stmtPedido.executeUpdate();
 
-            // Mensaje de éxito
-            out.println("<script>alert('Pedido registrado exitosamente'); window.location.href='menu.jsp';</script>");
+            // Redirigir a la página de confirmación de éxito
+            response.sendRedirect("pedidoRegistrado.jsp");
             
         } catch (SQLException e) {
             // Manejo de excepciones SQL

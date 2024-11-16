@@ -23,23 +23,23 @@
                     <i class='bx bxs-cart-add'></i>
                     <button type="button" id="btn-insertarPedido">Insertar Pedido</button>
                 </div>
-            </div>
-            <div class="mantenimiento">
-                <i class='bx bx-wrench'></i>
-                <button type="button" id="btn-mantenimiento">Consulta Cliente</button>
-            </div>
-            <div class="mantenimiento">
-                <i class='bx bx-wrench'></i>
-                <button type="button" id="btn-mantenimientoP">Consulta Pedido</button>
-            </div>
-            <div class="Consulta">
-                <i class='bx bxs-group'></i>
-                <button type="button" id="btn-Consulta">Consulta General</button>
-            </div>
-            <div class="salir">
-                <button type="button" id="btn-salir"> 
-                    <i class="bx bx-door-open"></i> Salir
-                </button>
+                <div class="mantenimiento">
+                    <i class='bx bx-wrench'></i>
+                    <button type="button" id="btn-mantenimiento">Consulta Cliente</button>
+                </div>
+                <div class="mantenimiento">
+                    <i class='bx bx-wrench'></i>
+                    <button type="button" id="btn-mantenimientoP">Consulta Pedido</button>
+                </div>
+                <div class="Consulta">
+                    <i class='bx bxs-group'></i>
+                    <button type="button" id="btn-Consulta">Consulta General</button>
+                </div>
+                <div class="salir">
+                    <button type="button" id="btn-salir"> 
+                        <i class="bx bx-door-open"></i> Salir
+                    </button>
+                </div>
             </div>
         </form>
     </div>

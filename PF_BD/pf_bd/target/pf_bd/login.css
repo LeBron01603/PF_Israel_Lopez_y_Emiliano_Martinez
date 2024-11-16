@@ -11,7 +11,11 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+<<<<<<< HEAD
     background: url('Imagen.jpg') no-repeat;
+=======
+    background: url('inicio.jpg') no-repeat;
+>>>>>>> Diseño
     background-size: cover;
     background-position: center;
 }
