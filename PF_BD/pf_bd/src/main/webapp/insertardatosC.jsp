@@ -24,9 +24,9 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, user, password);
 
-        // Verificar si la cédula ya existe
-        String checkCedulaQuery = "SELECT Cedula FROM cliente WHERE Cedula = ?";
-        checkCedulaStmt = conn.prepareStatement(checkCedulaQuery);
+        // Verificar si la cédula ya existe usando el procedimiento almacenado
+        String checkCedulaQuery = "{CALL verificarCedula(?)}";
+        checkCedulaStmt = conn.prepareCall(checkCedulaQuery);
         checkCedulaStmt.setString(1, identificacion);
         rs = checkCedulaStmt.executeQuery();
 
