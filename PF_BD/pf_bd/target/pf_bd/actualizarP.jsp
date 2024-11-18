@@ -31,7 +31,7 @@
         
         if (rowsAffected > 0) {
             // Si se actualizó al menos un registro, mostrar mensaje de éxito
-            mensaje = "¡Pedido actualizado con éxito!";
+            mensaje = "¡Pedido Actualizado con Exito!";
         } else {
             // Si no se actualizó nada, mostrar mensaje de error
             mensaje = "No se pudo actualizar el pedido.";

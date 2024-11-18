@@ -5,7 +5,7 @@
     // Variables de conexión y declaración de JDBC
     String URL = "jdbc:mysql://localhost:3306/bd_pf";
     String nombreUsuario = "root";
-    String nombreClave = "Isra1107.";
+    String nombreClave = "Emiliano01603";
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -33,7 +33,7 @@
         
         if (rowsAffected > 0) {
             // Si se actualizó al menos un registro, mostrar mensaje de éxito
-            mensaje = "¡Cliente actualizado con éxito!";
+            mensaje = "¡Cliente actualizado con Exito!";
         } else {
             // Si no se actualizó nada, mostrar mensaje de error
             mensaje = "No se pudo actualizar al cliente.";

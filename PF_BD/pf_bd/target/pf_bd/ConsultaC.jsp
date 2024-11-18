@@ -54,12 +54,14 @@
             // Verificar si existe el parámetro 'mensaje' en la URL
             String mensaje = request.getParameter("mensaje");
             if (mensaje != null && !mensaje.isEmpty()) {
-        %>
+                
+                mensaje = java.net.URLDecoder.decode(mensaje, "UTF-8");
+            %>
             <!-- Mostrar el mensaje -->
             <div class="mensaje">
                 <p><%= mensaje %></p>
             </div>
-        <% } %>
+            <% } %>
 
             <div id="resultado-listado">
                 <table class="user-table">
@@ -98,7 +100,6 @@
                                             <i class="fas fa-trash-alt"></i> Eliminar
                                         </button>
                                     </form>
-                                                                    
                                 </td>
                             </tr>
                         <% } %>

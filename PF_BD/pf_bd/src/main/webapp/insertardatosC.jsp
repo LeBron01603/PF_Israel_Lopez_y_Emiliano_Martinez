@@ -24,15 +24,15 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, user, password);
 
-        // Verificar si la cédula ya existe
-        String checkCedulaQuery = "SELECT Cedula FROM cliente WHERE Cedula = ?";
-        checkCedulaStmt = conn.prepareStatement(checkCedulaQuery);
+        // Verificar si la cédula ya existe usando el procedimiento almacenado
+        String checkCedulaQuery = "{CALL verificarCedula(?)}";
+        checkCedulaStmt = conn.prepareCall(checkCedulaQuery);
         checkCedulaStmt.setString(1, identificacion);
         rs = checkCedulaStmt.executeQuery();
 
         if (rs.next()) {
             // La cédula ya existe en la base de datos
-            out.println("<script>alert('Error: La cédula ya está registrada.'); window.location.href='registrarCliente.jsp';</script>");
+            out.println("<script>alert('Error: La cédula ya está registrada.'); window.location.href='insertarCliente.jsp';</script>");
         } else {
             // La cédula no existe, insertar el nuevo cliente
             String sqlCliente = "{CALL insertar_Cliente(?, ?, ?, ?, ?, ?)}";
@@ -43,6 +43,8 @@
             stmtCliente.setString(4, primerApellido);  
             stmtCliente.setString(5, segundoApellido); 
             stmtCliente.setString(6, email);           
+
+            // Ejecutar la inserción
             stmtCliente.executeUpdate();
 
             // Redirigir a la página de confirmación de éxito
@@ -52,11 +54,11 @@
     } catch (SQLException e) {
         // Manejo de excepciones SQL
         e.printStackTrace();
-        out.println("<script>alert('Error de base de datos: " + e.getMessage() + "'); window.location.href='registrarCliente.jsp';</script>");
+        out.println("<script>alert('Error de base de datos: " + e.getMessage() + "'); window.location.href='insertarCliente.jsp';</script>");
     } catch (Exception e) {
         // Manejo de excepciones generales
         e.printStackTrace();
-        out.println("<script>alert('Error inesperado: " + e.getMessage() + "'); window.location.href='registrarCliente.jsp';</script>");
+        out.println("<script>alert('Error inesperado: " + e.getMessage() + "'); window.location.href='insertarCliente.jsp';</script>");
     } finally {
         // Cerrar recursos
         try {

@@ -15,6 +15,7 @@
     String mensaje = ""; // Para almacenar el mensaje de estado
 
     try {
+        // Cargar el driver JDBC de MySQL
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(URL, nombreUsuario, nombreClave);
 
@@ -22,6 +23,7 @@
         String sql = "{CALL EliminarPedido(?)}"; // Llamamos al SP EliminarPedido
         stmt = conn.prepareCall(sql);
 
+        // Establecer el valor del parámetro 'idPedido' en el procedimiento almacenado
         stmt.setInt(1, Integer.parseInt(idPedido));  // idPedido es el parámetro para el procedimiento
 
         // Ejecutar el procedimiento almacenado
@@ -34,12 +36,12 @@
             mensaje = "No se pudo eliminar el pedido.";
         }
 
-        // Redirigir de vuelta a la página de listado después de la eliminación
-        response.sendRedirect("ConsultaP.jsp?mensaje=" + mensaje);
+        // Redirigir de vuelta a la página de listado después de la eliminación (codificando el mensaje)
+        response.sendRedirect("ConsultaP.jsp?mensaje=" + java.net.URLEncoder.encode(mensaje, "UTF-8"));
 
     } catch (ClassNotFoundException | SQLException e) {
         mensaje = "Error: " + e.getMessage();
-        response.sendRedirect("ConsultaP.jsp?mensaje=" + mensaje);
+        response.sendRedirect("ConsultaP.jsp?mensaje=" + java.net.URLEncoder.encode(mensaje, "UTF-8"));
     } finally {
         try {
             if (stmt != null) stmt.close();

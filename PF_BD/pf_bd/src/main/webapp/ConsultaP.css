@@ -130,7 +130,16 @@ body {
 .btn-exit:hover {
     background-color: #ff6666;
 }
-
+.mensaje {
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+}
 /* Estilos del contenedor de las acciones (botones de salir y editar) */
 .actions-wrapper {
     display: flex;

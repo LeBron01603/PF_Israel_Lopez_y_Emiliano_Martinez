@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*, javax.servlet.*, javax.servlet.http.*" %>
 
 <%
@@ -12,6 +12,7 @@
 
     Connection conn = null;
     CallableStatement stmt = null;
+    String mensaje = ""; // Para almacenar el mensaje de estado
 
     try {
         // Cargar el driver JDBC de MySQL
@@ -30,16 +31,17 @@
 
         // Verificar si la eliminación fue exitosa
         if (filasEliminadas > 0) {
-            out.println("<script>alert('Cliente eliminado correctamente');</script>");
+            mensaje = "Cliente eliminado correctamente.";
         } else {
-            out.println("<script>alert('No se pudo eliminar al Cliente');</script>");
+            mensaje = "No se pudo eliminar al Cliente.";
         }
 
-        // Redirigir de vuelta a la página de listado después de la eliminación
-        response.sendRedirect("ConsultaC.jsp");
+        // Redirigir de vuelta a la página de listado después de la eliminación (codificando el mensaje)
+        response.sendRedirect("ConsultaC.jsp?mensaje=" + java.net.URLEncoder.encode(mensaje, "UTF-8"));
 
     } catch (ClassNotFoundException | SQLException e) {
-        out.println("Error: " + e.getMessage());
+        mensaje = "Error: " + e.getMessage();
+        response.sendRedirect("ConsultaC.jsp?mensaje=" + java.net.URLEncoder.encode(mensaje, "UTF-8"));
     } finally {
         try {
             if (stmt != null) stmt.close();
