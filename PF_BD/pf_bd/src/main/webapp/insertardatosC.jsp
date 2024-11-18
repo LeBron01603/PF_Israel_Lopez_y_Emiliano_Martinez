@@ -32,7 +32,7 @@
 
         if (rs.next()) {
             // La cédula ya existe en la base de datos
-            out.println("<script>alert('Error: La cédula ya está registrada.'); window.location.href='registrarCliente.jsp';</script>");
+            out.println("<script>alert('Error: La cédula ya está registrada.'); window.location.href='insertarCliente.jsp';</script>");
         } else {
             // La cédula no existe, insertar el nuevo cliente
             String sqlCliente = "{CALL insertar_Cliente(?, ?, ?, ?, ?, ?)}";
